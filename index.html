@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Julieth Rubio — Disciplina de riesgo, instinto de marca</title>
+<meta name="description" content="Julieth Rubio · Estrategia, contenido y gestión de marca. Diez años liderando proyectos y equipos; portafolio reciente en video mapping y contenido de marca con Zalento XD / Belance Human Lab.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14151a;
+    --ink-soft:#1d1f27;
+    --paper:#f4f3ef;
+    --paper-dim:#e8e6e0;
+    --magenta:#ff2e7e;
+    --cyan:#22d3d0;
+    --slate:#565b66;
+    --mist:#9ca0ac;
+    --line-dark: rgba(244,243,239,0.14);
+    --line-light: rgba(20,21,26,0.12);
+    --disp: 'Space Grotesk', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+    --body: 'Inter', sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  img{display:block; max-width:100%;}
+  .wrap{max-width:1120px; margin:0 auto; padding:0 32px;}
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+  }
+
+  /* ---------- nav ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(20,21,26,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line-dark);
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:64px;
+  }
+  nav .brand{
+    font-family:var(--mono); color:var(--paper); font-size:13px; letter-spacing:0.08em;
+  }
+  nav .brand span{color:var(--cyan);}
+  nav ul{
+    list-style:none; display:flex; gap:28px;
+  }
+  nav ul li a{
+    font-family:var(--mono); font-size:12px; letter-spacing:0.06em;
+    text-transform:uppercase; color:var(--mist); text-decoration:none;
+    transition:color .2s;
+  }
+  nav ul li a:hover, nav ul li a:focus-visible{color:var(--cyan);}
+  .nav-links{display:flex;}
+  @media(max-width:720px){ .nav-links{gap:16px;} .nav-links li a{font-size:10px;} }
+
+  /* ---------- hero ---------- */
+  header.hero{
+    background:var(--ink);
+    color:var(--paper);
+    padding:96px 0 0;
+    overflow:hidden;
+    position:relative;
+  }
+  header.hero::before{
+    content:"";
+    position:absolute; inset:-20%;
+    background:
+      radial-gradient(600px circle at 15% 20%, rgba(255,46,126,.20), transparent 55%),
+      radial-gradient(560px circle at 85% 15%, rgba(34,211,208,.18), transparent 55%),
+      radial-gradient(500px circle at 70% 80%, rgba(255,46,126,.14), transparent 55%),
+      radial-gradient(520px circle at 25% 85%, rgba(34,211,208,.12), transparent 55%);
+    filter:blur(10px);
+    animation: driftBg 22s ease-in-out infinite alternate;
+    pointer-events:none;
+    z-index:0;
+  }
+  header.hero .wrap, header.hero .status{position:relative; z-index:1;}
+  @keyframes driftBg{
+    0%{ transform: translate3d(0,0,0) scale(1); }
+    50%{ transform: translate3d(-2%, 2%, 0) scale(1.06); }
+    100%{ transform: translate3d(2%, -2%, 0) scale(1.02); }
+  }
+  header.hero::after{
+    content:"";
+    position:absolute; inset:auto 0 0 0; height:1px;
+    background:linear-gradient(90deg, transparent, var(--magenta), var(--cyan), transparent);
+    opacity:.6;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns: 1.4fr 0.9fr; gap:56px; align-items:end;
+    padding-bottom:56px;
+  }
+  .hero-eyebrow{color:var(--cyan); margin-bottom:22px; display:flex; align-items:center; gap:10px;}
+  .hero-eyebrow::before{content:""; width:8px; height:8px; border-radius:50%; background:var(--magenta); box-shadow:0 0 0 3px rgba(255,46,126,.2);}
+  h1.hero-title{
+    font-family:var(--disp);
+    font-weight:600;
+    font-size:clamp(38px, 5.4vw, 68px);
+    line-height:1.04;
+    letter-spacing:-0.01em;
+  }
+  h1.hero-title em{
+    font-style:normal;
+    background:linear-gradient(90deg, var(--magenta), var(--cyan));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero-sub{
+    margin-top:26px; max-width:52ch; color:var(--mist); font-size:17px;
+  }
+  .hero-photo-col{display:flex; flex-direction:column; align-items:flex-end; gap:16px;}
+  .hero-photo{
+    width:220px; height:264px; object-fit:cover;
+    filter:grayscale(1) contrast(1.05);
+    border:1px solid var(--line-dark);
+  }
+  .hero-role{
+    font-family:var(--mono); font-size:12px; color:var(--mist); text-align:right; line-height:1.6;
+  }
+  .hero-role strong{color:var(--paper); display:block; font-size:13px; margin-bottom:4px;}
+  .hero-cta{
+    margin-top:30px; display:flex; gap:14px; flex-wrap:wrap;
+  }
+  .btn{
+    font-family:var(--mono); font-size:12px; letter-spacing:0.05em; text-transform:uppercase;
+    padding:13px 22px; text-decoration:none; display:inline-flex; align-items:center; gap:8px;
+    border:1px solid var(--line-dark); transition:all .2s;
+  }
+  .btn-primary{background:var(--paper); color:var(--ink);}
+  .btn-primary:hover{background:var(--cyan); border-color:var(--cyan);}
+  .btn-ghost{color:var(--paper); border-color:var(--line-dark);}
+  .btn-ghost:hover{border-color:var(--cyan); color:var(--cyan);}
+
+  /* status strip */
+  .status{
+    border-top:1px solid var(--line-dark);
+    background:var(--ink-soft);
+  }
+  .status-row{
+    display:grid; grid-template-columns:repeat(4,1fr);
+  }
+  .status-item{
+    padding:22px 28px; border-left:1px solid var(--line-dark);
+  }
+  .status-item:first-child{border-left:none;}
+  .status-num{
+    font-family:var(--mono); font-size:26px; color:var(--cyan); font-weight:600;
+  }
+  .status-label{
+    font-family:var(--mono); font-size:11px; color:var(--mist); text-transform:uppercase; letter-spacing:.04em; margin-top:6px;
+  }
+  @media(max-width:820px){
+    .hero-grid{grid-template-columns:1fr; padding-bottom:36px;}
+    .hero-photo-col{align-items:flex-start; flex-direction:row-reverse; justify-content:flex-end;}
+    .hero-photo{width:120px; height:144px;}
+    .status-row{grid-template-columns:repeat(2,1fr);}
+    .status-item:nth-child(3){border-left:none;}
+  }
+
+  /* ---------- section shells ---------- */
+  section{padding:96px 0;}
+  .section-head{margin-bottom:52px; max-width:60ch;}
+  .section-head .eyebrow{color:var(--magenta); margin-bottom:14px;}
+  .section-head h2{
+    font-family:var(--disp); font-size:clamp(28px,3.4vw,40px); font-weight:600; letter-spacing:-.01em;
+  }
+  .section-head p{margin-top:14px; color:var(--slate); font-size:16px;}
+
+  /* ---------- manifesto ---------- */
+  /* ---------- services ---------- */
+  .services{background:var(--paper);}
+  .svc-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid var(--line-light); border-left:1px solid var(--line-light);
+  }
+  .svc-item{
+    border-right:1px solid var(--line-light); border-bottom:1px solid var(--line-light);
+    padding:26px 20px; min-height:150px; display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .svc-num{font-family:var(--mono); font-size:11px; color:var(--magenta);}
+  .svc-label{font-family:var(--disp); font-size:16px; font-weight:600; line-height:1.3; margin-top:auto;}
+  @media(max-width:900px){ .svc-grid{grid-template-columns:repeat(2,1fr);} }
+  @media(max-width:480px){ .svc-grid{grid-template-columns:1fr;} }
+
+  .manifesto{background:var(--paper);}
+  .manifesto-grid{
+    display:grid; grid-template-columns:1fr 1px 1fr; gap:48px; align-items:start;
+  }
+  .manifesto-divider{background:var(--line-light); align-self:stretch;}
+  .manifesto-col .tag{
+    font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+    display:inline-block; padding:5px 10px; margin-bottom:18px;
+  }
+  .tag-slate{color:var(--slate); border:1px solid var(--line-light);}
+  .tag-magenta{color:var(--magenta); border:1px solid rgba(255,46,126,.35);}
+  .manifesto-col h3{font-family:var(--disp); font-size:22px; margin-bottom:14px; font-weight:600;}
+  .manifesto-col p{color:var(--slate); margin-bottom:12px;}
+  .manifesto-bridge{
+    text-align:center; margin-top:52px; font-family:var(--disp); font-size:20px;
+    max-width:46ch; margin-left:auto; margin-right:auto; line-height:1.5;
+  }
+  .manifesto-bridge span{color:var(--magenta);}
+  @media(max-width:760px){ .manifesto-grid{grid-template-columns:1fr;} .manifesto-divider{display:none;} }
+
+  /* ---------- bitacora (career log) ---------- */
+  .bitacora{background:var(--ink); color:var(--paper);}
+  .bitacora .section-head p{color:var(--mist);}
+  .bitacora .section-head .eyebrow{color:var(--cyan);}
+  .log-entry{
+    display:grid; grid-template-columns:120px 1fr; gap:28px;
+    padding:26px 0; border-top:1px solid var(--line-dark);
+    opacity:0; transform:translateY(14px); transition:opacity .5s ease, transform .5s ease;
+  }
+  .log-entry.in-view{opacity:1; transform:none;}
+  .log-entry:last-child{border-bottom:1px solid var(--line-dark);}
+  .log-date{font-family:var(--mono); font-size:13px; color:var(--mist); padding-top:3px;}
+  .log-role{font-family:var(--disp); font-size:19px; font-weight:600;}
+  .log-org{font-family:var(--mono); font-size:12px; color:var(--cyan); margin-top:4px;}
+  .log-desc{color:var(--mist); margin-top:10px; font-size:15px; max-width:62ch;}
+  .log-tags{margin-top:14px; display:flex; gap:8px; flex-wrap:wrap;}
+  .log-tags span{
+    font-family:var(--mono); font-size:10px; text-transform:uppercase; letter-spacing:.05em;
+    padding:4px 9px; border:1px solid var(--line-dark); color:var(--mist);
+  }
+  .log-tags span.t-content{color:var(--magenta); border-color:rgba(255,46,126,.4);}
+  .log-tags span.t-risk{color:var(--cyan); border-color:rgba(34,211,208,.4);}
+  @media(max-width:600px){ .log-entry{grid-template-columns:1fr;} .log-date{padding-top:0;} }
+
+  /* ---------- portfolio ---------- */
+  .portfolio{background:var(--paper-dim);}
+  .pf-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:28px;}
+  .pf-card{
+    background:var(--ink); color:var(--paper);
+    border:1px solid transparent;
+    transition:border-color .25s, transform .25s;
+    opacity:0; transform:translateY(16px); transition:opacity .5s ease, transform .5s ease, border-color .25s;
+  }
+  .pf-card.in-view{opacity:1; transform:none;}
+  .pf-card:hover{border-color:var(--magenta);}
+  .pf-images{display:grid; gap:2px;}
+  .pf-images.two{grid-template-columns:1fr 1fr;}
+  .pf-images img, .pf-images video{width:100%; height:210px; object-fit:cover; filter:saturate(1.05); transition:transform .5s ease; display:block; background:#000;}
+  .pf-card:hover .pf-images img, .pf-card:hover .pf-images video{transform:scale(1.045);}
+  .pf-video-tag{position:relative;}
+  .pf-video-tag::after{
+    content:"VIDEO"; position:absolute; top:10px; right:10px; z-index:2;
+    font-family:var(--mono); font-size:9px; letter-spacing:.08em; color:#fff;
+    background:rgba(20,21,26,.65); padding:3px 7px; border:1px solid rgba(255,255,255,.25);
+  }
+  .pf-body{padding:22px 24px 26px;}
+  .pf-client{font-family:var(--mono); font-size:11px; color:var(--cyan); text-transform:uppercase; letter-spacing:.05em;}
+  .pf-title{font-family:var(--disp); font-size:20px; font-weight:600; margin-top:8px;}
+  .pf-desc{color:var(--mist); font-size:14px; margin-top:10px;}
+  .pf-stack{margin-top:14px; font-family:var(--mono); font-size:10px; color:var(--mist); letter-spacing:.04em; text-transform:uppercase;}
+  .pf-stack span{color:var(--magenta);}
+  @media(max-width:820px){ .pf-grid{grid-template-columns:1fr;} }
+
+  .pf-role-note{
+    margin-top:44px; padding:22px 26px; border:1px dashed var(--line-light);
+    font-family:var(--mono); font-size:13px; color:var(--slate); background:var(--paper);
+  }
+  .pf-role-note strong{color:var(--ink);}
+
+  /* ---------- emprendimientos ---------- */
+  .ventures{margin-top:64px; padding-top:56px; border-top:1px solid var(--line-light);}
+  .ventures-head{max-width:64ch; margin-bottom:36px;}
+  .ventures-head .eyebrow{color:var(--magenta); margin-bottom:12px;}
+  .ventures-head h3{font-family:var(--disp); font-size:24px; font-weight:600;}
+  .ventures-head p{color:var(--slate); margin-top:10px; font-size:15px;}
+  .vt-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+  .vt-card{
+    background:#fff; border:1px solid var(--line-light); padding:26px; display:flex; gap:20px; align-items:flex-start;
+  }
+  .vt-logo{
+    width:64px; height:64px; border-radius:50%; object-fit:cover; border:1px solid var(--line-light); flex:none;
+  }
+  .vt-logo-text{
+    width:64px; height:64px; border-radius:50%; border:1px solid var(--line-light); flex:none;
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    font-family:var(--disp); font-weight:700; font-size:11px; letter-spacing:.02em; line-height:1.15; color:var(--ink);
+    background:var(--paper-dim);
+  }
+  .vt-name{font-family:var(--disp); font-weight:600; font-size:17px;}
+  .vt-type{font-family:var(--mono); font-size:11px; color:var(--slate); text-transform:uppercase; letter-spacing:.04em; margin-top:2px;}
+  .vt-desc{font-size:14px; color:var(--slate); margin-top:10px;}
+  .vt-tags{margin-top:12px; display:flex; gap:6px; flex-wrap:wrap;}
+  .vt-tags span{
+    font-family:var(--mono); font-size:10px; text-transform:uppercase; letter-spacing:.04em;
+    padding:3px 8px; border:1px solid rgba(255,46,126,.3); color:var(--magenta);
+  }
+  @media(max-width:760px){ .vt-grid{grid-template-columns:1fr;} }
+
+  /* ---------- credentials ---------- */
+  .credentials{background:var(--paper);}
+  .cred-cols{display:grid; grid-template-columns:1fr 1fr; gap:48px;}
+  .cred-block h4{
+    font-family:var(--mono); font-size:12px; text-transform:uppercase; letter-spacing:.08em;
+    color:var(--magenta); margin-bottom:18px;
+  }
+  .cred-item{padding:14px 0; border-top:1px solid var(--line-light);}
+  .cred-item:last-child{padding-bottom:0;}
+  .cred-role{font-weight:600; font-size:15px;}
+  .cred-org{font-family:var(--mono); font-size:12px; color:var(--slate); margin-top:3px;}
+  @media(max-width:760px){ .cred-cols{grid-template-columns:1fr; gap:8px;} }
+
+  /* ---------- allies ---------- */
+  .allies{background:var(--ink); color:var(--paper); padding:80px 0;}
+  .allies .section-head .eyebrow{color:var(--cyan);}
+  .allies .section-head p{color:var(--mist);}
+  .allies-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .ally-card{
+    border:1px solid var(--line-dark); padding:28px; display:flex; gap:20px; align-items:flex-start;
+  }
+  .ally-logo{width:60px; height:60px; border-radius:50%; object-fit:cover; flex:none; background:#fff; padding:4px;}
+  .ally-name{font-family:var(--disp); font-weight:600; font-size:18px;}
+  .ally-role{font-family:var(--mono); font-size:11px; color:var(--cyan); text-transform:uppercase; letter-spacing:.04em; margin-top:3px;}
+  .ally-desc{color:var(--mist); font-size:14px; margin-top:10px;}
+  @media(max-width:900px){ .allies-grid{grid-template-columns:1fr 1fr;} }
+  @media(max-width:600px){ .allies-grid{grid-template-columns:1fr;} }
+
+  /* ---------- community strip ---------- */
+  .community{background:var(--paper-dim); padding:40px 0;}
+  .community .wrap{display:flex; align-items:center; gap:40px; flex-wrap:wrap;}
+  .community-item{display:flex; align-items:center; gap:20px;}
+  .community img{height:52px; width:auto; max-width:110px; object-fit:contain; border:1px solid var(--line-light); border-radius:6px; background:#000; padding:6px 10px;}
+  .community img.round{border-radius:50%; height:52px; width:52px; object-fit:cover; background:#fff; padding:0;}
+  .community-text{font-family:var(--mono); font-size:13px; color:var(--slate);}
+  .community-text strong{color:var(--ink); font-family:var(--body); font-weight:600;}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--ink); color:var(--paper); padding:72px 0 40px;}
+  .footer-top{
+    display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:32px;
+    padding-bottom:40px; border-bottom:1px solid var(--line-dark);
+  }
+  .footer-top h2{
+    font-family:var(--disp); font-size:clamp(26px,3.6vw,40px); font-weight:600; max-width:14ch; line-height:1.1;
+  }
+  .footer-contact{font-family:var(--mono); font-size:14px; display:flex; flex-direction:column; gap:8px;}
+  .footer-contact a{text-decoration:none; color:var(--paper); border-bottom:1px solid transparent;}
+  .footer-contact a:hover{color:var(--cyan); border-color:var(--cyan);}
+  .footer-bottom{
+    display:flex; justify-content:space-between; align-items:center; padding-top:28px; flex-wrap:wrap; gap:16px;
+  }
+  .footer-credit{display:flex; align-items:center; gap:12px; font-family:var(--mono); font-size:11px; color:var(--mist);}
+  .footer-credit img{height:26px; width:auto; background:#fff; padding:6px 10px; border-radius:2px;}
+  .footer-small{font-family:var(--mono); font-size:11px; color:var(--mist);}
+
+  ::selection{background:var(--magenta); color:var(--ink);}
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important; animation:none !important;}
+    .log-entry, .pf-card{opacity:1; transform:none;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">JULIETH RUBIO <span>//</span> ESTRATEGIA &amp; CONTENIDO</div>
+    <ul class="nav-links">
+      <li><a href="#perfil">Perfil</a></li>
+      <li><a href="#trayectoria">Trayectoria</a></li>
+      <li><a href="#portafolio">Portafolio</a></li>
+      <li><a href="#formacion">Formación</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="perfil">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow hero-eyebrow">Julieth Rubio — Bogotá, Colombia</div>
+        <h1 class="hero-title">Disciplina de riesgo,<br><em>instinto de marca.</em></h1>
+        <p class="hero-sub">Diez años liderando proyectos, equipos y procesos críticos en sectores regulados. Hoy pongo esa misma disciplina al servicio del contenido, la marca y la gestión de comunidades — con un portafolio reciente en video mapping, contenido de marca y experiencias digitales junto a <strong>Zalento XD / Belance Human Lab</strong>.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#portafolio">Ver portafolio creativo</a>
+          <a class="btn btn-ghost" href="#trayectoria">Ver trayectoria completa</a>
+        </div>
+      </div>
+      <div class="hero-photo-col">
+        <img class="hero-photo" src="assets/julieth_photo.jpg" alt="Retrato de Julieth Rubio">
+        <div class="hero-role">
+          <strong>Estrategia · Contenido · Marca</strong>
+          Ingeniera Industrial<br>
+          Gestión de proyectos y experiencia de cliente<br>
+          Visual Creator · Story Feeling · Fotografía<br>
+          Neurociencia aplicada
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="status">
+    <div class="wrap">
+      <div class="status-row">
+        <div class="status-item">
+          <div class="status-num">10+</div>
+          <div class="status-label">Años liderando equipos y proyectos</div>
+        </div>
+        <div class="status-item">
+          <div class="status-num">08</div>
+          <div class="status-label">Roles, trayectoria continua 2008–2026</div>
+        </div>
+        <div class="status-item">
+          <div class="status-num">06</div>
+          <div class="status-label">Marcas en el portafolio creativo reciente</div>
+        </div>
+        <div class="status-item">
+          <div class="status-num">XP</div>
+          <div class="status-label">Diseño de experiencias / Neurociencia aplicada</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="services">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Qué hago</div>
+      <h2>Servicios</h2>
+      <p>Además de la gestión de cuenta con estudios creativos, trabajo de forma independiente asesorando marcas y emprendimientos de principio a fin.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-item"><div class="svc-num">01</div><div class="svc-label">Diseño y desarrollo de páginas web</div></div>
+      <div class="svc-item"><div class="svc-num">02</div><div class="svc-label">Reestructuración de procesos y estrategia de marca</div></div>
+      <div class="svc-item"><div class="svc-num">03</div><div class="svc-label">Community management</div></div>
+      <div class="svc-item"><div class="svc-num">04</div><div class="svc-label">Estrategias y campañas de lanzamiento</div></div>
+      <div class="svc-item"><div class="svc-num">05</div><div class="svc-label">Asesoría integral a emprendimientos</div></div>
+      <div class="svc-item"><div class="svc-num">06</div><div class="svc-label">Investigación y copywriting para marcas</div></div>
+      <div class="svc-item"><div class="svc-num">07</div><div class="svc-label">Capacitación y formación de equipos</div></div>
+      <div class="svc-item"><div class="svc-num">08</div><div class="svc-label">Automatización de procesos y agentes con IA</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="manifesto">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Cómo trabajo</div>
+      <h2>Dos disciplinas, un mismo oficio</h2>
+      <p>No son dos hojas de vida distintas. Son la misma pregunta aplicada a contextos distintos: ¿qué necesita esta audiencia para confiar?</p>
+    </div>
+    <div class="manifesto-grid">
+      <div class="manifesto-col">
+        <span class="tag tag-slate">La disciplina</span>
+        <h3>Procesos que sostienen la confianza</h3>
+        <p>Diez años diseñando marcos de control, liderando equipos multidisciplinarios y coordinando proyectos con entes de control, aliados y comunidades en sectores salud, financiero, asegurador y de cooperación internacional.</p>
+        <p>De ahí viene mi manera de trabajar: pensamiento sistémico, seguimiento riguroso, reporting claro y capacidad de sostener proyectos complejos de principio a fin — y de formar equipos: he capacitado en cultura preventiva y gestión de riesgos a lo largo de toda mi trayectoria, apoyada en estudios de neurociencia aplicada para entender cómo regulan sus equipos y sus decisiones.</p>
+      </div>
+      <div class="manifesto-divider"></div>
+      <div class="manifesto-col">
+        <span class="tag tag-magenta">La narrativa</span>
+        <h3>Contenido que sostiene la conversación</h3>
+        <p>Desde 2020 construyo experiencia de cliente, comunidad y ahora contenido de marca: coordino cuentas y he participado en proyectos creativos con el estudio Zalento XD / Belance Human Lab para marcas como Bancolombia, MinTIC, la Universidad Javeriana, Mary Kay y el Foro Educativo Nacional, y asesoro emprendimientos en estrategia, investigación y copywriting.</p>
+        <p>Aplico la misma rigurosidad a briefs, cronogramas y equipos creativos — y la misma vocación de formar: he capacitado a emprendedores y comunidades de organizaciones sociales, con Colmen IA como aliado estratégico para formación en inteligencia artificial.</p>
+      </div>
+    </div>
+    <p class="manifesto-bridge">Ambas nacen de la misma pregunta: <span>¿qué necesita esta audiencia para confiar, para preferirte y para recordarte?</span></p>
+  </div>
+</section>
+
+<section class="bitacora" id="trayectoria">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Bitácora profesional</div>
+      <h2>Trayectoria completa, 2008 — 2026</h2>
+      <p>Sin editar ni omitir nada: así se ve una carrera construida por capas, de control de riesgos a estrategia de contenido.</p>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-date">2025 — 2026</div>
+      <div>
+        <div class="log-role">Aliada estratégica — Gestión de cuenta y coordinación de proyectos creativos</div>
+        <div class="log-org">Zalento XD (Studio Creativo) / Belance Human Lab</div>
+        <p class="log-desc">Gestión de cuenta y coordinación entre clientes y equipo creativo para proyectos de video mapping, contenido de marca y experiencias digitales con Bancolombia, Cámara de Comercio de Bogotá, MinTIC, Universidad Javeriana, Mobil Delvac, Parque Explora, Mary Kay y Foro Educativo Nacional.</p>
+        <div class="log-tags"><span class="t-content">Contenido y marca</span><span class="t-content">Gestión de cuenta</span><span class="t-content">Inteligencia artificial y automatización de procesos</span></div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-date">2025 — ene. 2026</div>
+      <div>
+        <div class="log-role">Consultoría organizacional — Gestión de riesgos y formación</div>
+        <div class="log-org">Consultoría independiente</div>
+        <p class="log-desc">Acompañamiento a proyectos empresariales de gestión de riesgos y facilitación de formación para equipos corporativos.</p>
+        <div class="log-tags"><span class="t-risk">Riesgos</span><span class="t-risk">Formación</span></div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-date">2023 — 2024</div>
+      <div>
+        <div class="log-role">Coordinadora de Gestión de Riesgos — Colombia</div>
+        <div class="log-org">Acción Contra el Hambre · Cooperación Internacional (ONG)</div>
+        <p class="log-desc">Lideré equipos y el sistema de riesgos operativos, éticos y de protección de datos para Colombia; rediseñé el procedimiento de investigación de quejas sensibles y un programa digital de formación preventiva.</p>
+        <div class="log-tags"><span class="t-risk">Riesgos</span><span class="t-risk">Liderazgo de equipos</span></div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-date">2020 — 2023</div>
+      <div>
+        <div class="log-role">Directora de Proyectos y Experiencia del Cliente</div>
+        <div class="log-org">Widpal SAS · Consultoría y Tecnología Empresarial</div>
+        <p class="log-desc">Diseñé procesos de onboarding, seguimiento y fidelización de clientes que mejoraron el NPS; implementé tableros de control con Power BI y reduje en 30% los tiempos de entrega mediante optimización de procesos.</p>
+        <div class="log-tags"><span class="t-content">Experiencia de cliente</span><span class="t-risk">Gestión de proyectos</span></div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-date">2020 — 2023</div>
+      <div>
+        <div class="log-role">Asesora de Marca y Comunicación — Emprendimientos</div>
+        <div class="log-org">Independiente, en paralelo a Widpal</div>
+        <p class="log-desc">Estrategia de marca y comunicación, y campañas puntuales de lanzamiento y promoción para emprendimientos como ZOA (educación canina) y Toc Toc Agencia Secreta (servicios multiespecie).</p>
+        <div class="log-tags"><span class="t-content">Estrategia de marca</span><span class="t-content">Campañas</span></div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-date">2018 — 2020</div>
+      <div>
+        <div class="log-role">Profesional Senior de Riesgos y Entes de Control</div>
+        <div class="log-org">Fiduprevisora — USPEC (Fondo Atención Salud PPL)</div>
+        <p class="log-desc">Representé a la entidad ante USPEC, INPEC y Ministerio de Salud; estructuré el cálculo de reservas de riesgo y diseñé el plan de continuidad del negocio para la transición a trabajo remoto.</p>
+        <div class="log-tags"><span class="t-risk">Riesgos</span><span class="t-risk">Relación institucional</span></div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-date">2016 — 2018</div>
+      <div>
+        <div class="log-role">Profesional Senior — Sistema de Riesgo Operativo</div>
+        <div class="log-org">Fiduprevisora — Consorcio SAYP (FOSYGA / Ministerio de Salud)</div>
+        <p class="log-desc">Implementé procesos de control operativo, diseñé estrategias preventivas para el manejo de situaciones críticas y consolidé una cultura de trabajo preventivo replicada como buena práctica interna.</p>
+        <div class="log-tags"><span class="t-risk">Riesgos</span><span class="t-risk">Control operativo</span></div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-date">2015 — 2016</div>
+      <div>
+        <div class="log-role">Coordinadora de Proyectos — Innovación y Formación</div>
+        <div class="log-org">Terra Mater (Insight Box) · Consultora en Formación e Innovación</div>
+        <p class="log-desc">Diseñé y facilité sesiones formativas en liderazgo y pensamiento creativo, aplicando design thinking y aprendizaje experiencial para cocrear soluciones ajustadas a cada cliente.</p>
+        <div class="log-tags"><span class="t-content">Design thinking</span><span class="t-content">Formación</span></div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-date">2008 — 2015</div>
+      <div>
+        <div class="log-role">Analista / Asistente Técnica Nacional — Automóviles y SOAT</div>
+        <div class="log-org">Seguros Bolívar · Aseguradora</div>
+        <p class="log-desc">Impulsé un crecimiento del 80% en pólizas digitales liderando capacitaciones nacionales en expedición web, y participé en mesas intersectoriales con Fasecolda y el Ministerio de Transporte.</p>
+        <div class="log-tags"><span class="t-risk">Riesgos</span><span class="t-risk">Operación nacional</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="portfolio" id="portafolio">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Portafolio 2025 — 2026</div>
+      <h2>Gestión de cuenta y contenido de marca</h2>
+      <p>Proyectos coordinados como aliada de Zalento XD (Studio Creativo) / Belance Human Lab: relación con el cliente, seguimiento de cronograma y puente con el equipo creativo (diseño, animación 3D, motion graphics, producción audiovisual).</p>
+    </div>
+
+    <div class="pf-grid">
+
+      <article class="pf-card">
+        <div class="pf-images pf-video-tag">
+          <video autoplay muted loop playsinline poster="assets/video/poster_campus2600.jpg">
+            <source src="assets/video/campus2600.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="pf-body">
+          <div class="pf-client">Cámara de Comercio de Bogotá · MinTIC</div>
+          <div class="pf-title">Campus 2600 — "Llega Alto"</div>
+          <p class="pf-desc">Contenido DOOH y video mapping para el lanzamiento del ecosistema de ciencia, tecnología e innovación de Bogotá-Región, presentado en Corferias.</p>
+          <div class="pf-stack"><span>IA</span> · Motion Graphics · Animación 3D</div>
+        </div>
+      </article>
+
+      <article class="pf-card">
+        <div class="pf-images pf-video-tag">
+          <video autoplay muted loop playsinline poster="assets/video/poster_colombia40.jpg">
+            <source src="assets/video/colombia40.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="pf-body">
+          <div class="pf-client">MinTIC</div>
+          <div class="pf-title">Colombia 4.0 — Fake Out of Home</div>
+          <p class="pf-desc">Contenido FOOH para el evento de tecnología más importante de Colombia, con presencia en Corferias durante los dos días del evento.</p>
+          <div class="pf-stack"><span>IA</span> · Motion Graphics · Unreal</div>
+        </div>
+      </article>
+
+      <article class="pf-card">
+        <div class="pf-images">
+          <img src="assets/bancolombia.jpg" alt="Bancolombia, recorrido 360 grados de contenido educativo">
+        </div>
+        <div class="pf-body">
+          <div class="pf-client">Bancolombia</div>
+          <div class="pf-title">Recorrido 360° — Contenido educativo</div>
+          <p class="pf-desc">Experiencia de recorrido virtual 360° para contenido educativo de marca, con renders de ambientes y narrativa de experiencia de usuario.</p>
+          <div class="pf-stack">Experience Design · Render 360°</div>
+        </div>
+      </article>
+
+      <article class="pf-card">
+        <div class="pf-images two">
+          <div class="pf-video-tag">
+            <video autoplay muted loop playsinline poster="assets/video/poster_javeriana_mapping.jpg">
+              <source src="assets/video/javeriana_mapping.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="pf-video-tag">
+            <video autoplay muted loop playsinline poster="assets/video/poster_javeriana_interactivo.jpg">
+              <source src="assets/video/javeriana_interactivo.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <div class="pf-body">
+          <div class="pf-client">Pontificia Universidad Javeriana</div>
+          <div class="pf-title">Content mapping — Muestra cultural</div>
+          <p class="pf-desc">Desarrollo de contenido y visuales interactivos para una muestra cultural universitaria, con narrativa enfocada en una problemática ambiental actual.</p>
+          <div class="pf-stack">Motion Graphics · Unreal · TouchDesigner</div>
+        </div>
+      </article>
+
+      <article class="pf-card">
+        <div class="pf-images two">
+          <img src="assets/mobildelvac_a.jpg" alt="Key visual Mobil Delvac, Premio Nacional de Tractomulas">
+          <img src="assets/mobildelvac_b.jpg" alt="Animación 3D del recorrido de la carrera Mobil Delvac">
+        </div>
+        <div class="pf-body">
+          <div class="pf-client">Mobil Delvac</div>
+          <div class="pf-title">36 años — Premio Nacional de Tractomulas</div>
+          <p class="pf-desc">Key visual y contenidos en animación 3D de las 17 pruebas de la competencia, para un evento con más de 35 años de trayectoria.</p>
+          <div class="pf-stack"><span>IA</span> · Motion Graphics · Animación 3D · Unreal</div>
+        </div>
+      </article>
+
+      <article class="pf-card">
+        <div class="pf-images">
+          <img src="assets/parqueexplora.jpg" alt="Parque Explora, contenido en video 360 grados">
+        </div>
+        <div class="pf-body">
+          <div class="pf-client">Parque Explora</div>
+          <div class="pf-title">Video 360° — Activación experiencial</div>
+          <p class="pf-desc">Registro y contenido en video 360° de una activación experiencial en el parque, con recorrido inmersivo del espacio.</p>
+          <div class="pf-stack">Video 360° · Motion Graphics</div>
+        </div>
+      </article>
+
+      <article class="pf-card">
+        <div class="pf-images pf-video-tag">
+          <video autoplay muted loop playsinline poster="assets/video/poster_mary_kay.jpg">
+            <source src="assets/video/mary_kay.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="pf-body">
+          <div class="pf-client">Mary Kay</div>
+          <div class="pf-title">Contenidos digitales de marca</div>
+          <p class="pf-desc">Desarrollo de contenidos digitales de marca, incluyendo piezas para su línea Mary Kay Skincare.</p>
+          <div class="pf-stack">Contenido Digital · Motion Graphics</div>
+        </div>
+      </article>
+
+      <article class="pf-card">
+        <div class="pf-images two">
+          <div class="pf-video-tag">
+            <video autoplay muted loop playsinline poster="assets/video/poster_foro_educativo_a.jpg">
+              <source src="assets/video/foro_educativo_a.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="pf-video-tag">
+            <video autoplay muted loop playsinline poster="assets/video/poster_foro_educativo_b.jpg">
+              <source src="assets/video/foro_educativo_b.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <div class="pf-body">
+          <div class="pf-client">Foro Educativo Nacional · Mercado Libre</div>
+          <div class="pf-title">Foro Educativo Nacional</div>
+          <p class="pf-desc">Contenido de marca y registro audiovisual para el Foro Educativo Nacional, con producción en sitio.</p>
+          <div class="pf-stack">Contenido Digital · Producción Audiovisual</div>
+        </div>
+      </article>
+
+      <article class="pf-card">
+        <div class="pf-images pf-video-tag">
+          <video autoplay muted loop playsinline poster="assets/video/poster_cci_world_chambers.jpg">
+            <source src="assets/video/cci_world_chambers.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="pf-body">
+          <div class="pf-client">Cámara de Comercio de Bogotá</div>
+          <div class="pf-title">CCI World Chambers Federation</div>
+          <p class="pf-desc">Contenido de marca para la participación de la Cámara de Comercio de Bogotá en la Federación Mundial de Cámaras de Comercio.</p>
+          <div class="pf-stack">Motion Graphics · Contenido de Marca</div>
+        </div>
+      </article>
+
+      <article class="pf-card">
+        <div class="pf-images pf-video-tag">
+          <video autoplay muted loop playsinline poster="assets/video/poster_avatar_host.jpg">
+            <source src="assets/video/avatar_host.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="pf-body">
+          <div class="pf-client">Zalento XD — Capacidad IA</div>
+          <div class="pf-title">Avatares de marca con Inteligencia Artificial</div>
+          <p class="pf-desc">Desarrollo de avatares digitales ("digital humans") para marcas a partir de inteligencia artificial, como anfitriones de contenido y experiencias.</p>
+          <div class="pf-stack"><span>IA</span> · Avatares Digitales · Digital Human</div>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="pf-role-note"><strong>Mi rol en estos proyectos:</strong> como aliada de Zalento XD y Belance Human Lab, gestioné la relación con el cliente, la investigación estratégica, el copywriting, el acompañamiento en el diseño de campañas y el seguimiento del proyecto — no la producción técnica del contenido (animación 3D, motion graphics, TouchDesigner), a cargo del equipo creativo del estudio.</p>
+
+
+    <div class="ventures">
+      <div class="ventures-head">
+        <div class="eyebrow">Asesoría independiente</div>
+        <h3>Estrategia de marca y comunicación para emprendimientos</h3>
+        <p>En paralelo a mi rol en Widpal, acompañé a emprendimientos con estrategia de marca, comunicación y campañas puntuales de lanzamiento y promoción.</p>
+      </div>
+      <div class="vt-grid">
+        <article class="vt-card">
+          <img class="vt-logo" src="assets/zoa_logo.jpg" alt="Logo de ZOA, educación canina">
+          <div>
+            <div class="vt-name">ZOA · Educación Canina</div>
+            <div class="vt-type">Servicio para mascotas — Bogotá</div>
+            <p class="vt-desc">Estrategia de marca y comunicación, y campañas puntuales de lanzamiento y promoción para su oferta de bienestar, educación y caminatas caninas.</p>
+            <div class="vt-tags"><span>Estrategia de marca</span><span>Campañas</span></div>
+          </div>
+        </article>
+        <article class="vt-card">
+          <div class="vt-logo-text">TOC<br>TOC</div>
+          <div>
+            <div class="vt-name">Toc Toc Agencia Secreta</div>
+            <div class="vt-type">Spa · Guardería · Adiestramiento multiespecie</div>
+            <p class="vt-desc">Estrategia de marca y comunicación, y campañas puntuales de lanzamiento y promoción para su servicio multiespecie de spa, guardería y adiestramiento.</p>
+            <div class="vt-tags"><span>Estrategia de marca</span><span>Campañas</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="credentials" id="formacion">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Formación</div>
+      <h2>Educación y certificaciones</h2>
+    </div>
+    <div class="cred-cols">
+      <div class="cred-block">
+        <h4>Educación formal</h4>
+        <div class="cred-item">
+          <div class="cred-role">Ingeniería Industrial</div>
+          <div class="cred-org">Universidad ECCI — 2014</div>
+        </div>
+        <div class="cred-item">
+          <div class="cred-role">Especialista en Gerencia de Seguridad y Salud en el Trabajo</div>
+          <div class="cred-org">Universidad ECCI — 2014–2015</div>
+        </div>
+        <div class="cred-item">
+          <div class="cred-role">Ciencias del Comportamiento Organizacional</div>
+          <div class="cred-org">Universidad de los Andes — en curso</div>
+        </div>
+      </div>
+      <div class="cred-block">
+        <h4>Certificaciones y formación complementaria</h4>
+        <div class="cred-item">
+          <div class="cred-role">Risk Manager — ISO 31000</div>
+          <div class="cred-org">PECB Canadá — 2019</div>
+        </div>
+        <div class="cred-item">
+          <div class="cred-role">Design thinking y aprendizaje experiencial · IA aplicada (LAB10)</div>
+          <div class="cred-org">Formación complementaria</div>
+        </div>
+        <div class="cred-item">
+          <div class="cred-role">Coach en PNL · Estudios de neurociencia aplicada y trauma somático</div>
+          <div class="cred-org">IATP, EE. UU. — Certified Trauma Somático</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="allies">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Aliados estratégicos</div>
+      <h2>Con quién trabajo</h2>
+      <p>Para llevar cada proyecto más allá de mi propia experticia, trabajo con aliados especializados que sumo según lo que necesite el cliente.</p>
+    </div>
+    <div class="allies-grid">
+      <div class="ally-card">
+        <img class="ally-logo" src="assets/zalento_logo_crop.jpg" alt="Zalento XD — Studio Creativo" style="border-radius:8px; object-fit:contain;">
+        <div>
+          <div class="ally-name">Zalento XD</div>
+          <div class="ally-role">Contenido audiovisual · Video mapping · Motion graphics</div>
+          <p class="ally-desc">Estudio creativo con el que gestiono cuenta y coordino proyectos de producción audiovisual y experiencias de marca.</p>
+        </div>
+      </div>
+      <div class="ally-card">
+        <img class="ally-logo" src="assets/belance_logo.jpg" alt="Belance Human Lab">
+        <div>
+          <div class="ally-name">Belance Human Lab</div>
+          <div class="ally-role">Arquitectura neuroexperiencial</div>
+          <p class="ally-desc">Aliado con el que sumo diseño de experiencias presenciales basadas en neurociencia aplicada a los proyectos de marca de mis clientes.</p>
+        </div>
+      </div>
+      <div class="ally-card">
+        <img class="ally-logo" src="assets/colmenia_logo.jpg" alt="Colmen IA">
+        <div>
+          <div class="ally-name">Colmen IA</div>
+          <div class="ally-role">Inteligencia artificial aplicada a marketing y proyectos</div>
+          <p class="ally-desc">Aliado estratégico al que recurro para sumar inteligencia artificial aplicada a los proyectos de marketing y marca de mis clientes.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="community">
+  <div class="wrap">
+    <div class="community-item">
+      <img class="round" src="assets/ignia_logo.jpg" alt="Logo de Ignia">
+      <div class="community-text"><strong>Miembro de la comunidad Ignia</strong> — educación en negocios, IA/Tech &amp; diseño, con los mejores practitioners como profesores.</div>
+    </div>
+    <div class="community-item">
+      <img src="assets/lab10_logo.jpg" alt="Logo de LAB10">
+      <div class="community-text"><strong>Miembro de la comunidad LAB10</strong> — la comunidad de AI Builders más grande de Latam.</div>
+    </div>
+  </div>
+</section>
+
+<footer id="contacto">
+  <div class="wrap">
+    <div class="footer-top">
+      <h2>Hablemos de tu próximo proyecto de contenido.</h2>
+      <div class="footer-contact">
+        <a href="mailto:juliethrubio68@gmail.com">juliethrubio68@gmail.com</a>
+        <a href="tel:+573208103735">+57 320 810 3735</a>
+        <a href="https://www.linkedin.com/in/julieth-rubio-052490b0" target="_blank" rel="noopener">linkedin.com/in/julieth-rubio-052490b0</a>
+        <a href="https://co.pinterest.com/juliethrubio/" target="_blank" rel="noopener">Pinterest — Visual Creator &amp; Story Feeling</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-small">Bogotá, Colombia · Español nativo · Inglés básico–intermedio</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in-view'); obs.unobserve(e.target); } });
+  }, {threshold:0.15});
+  document.querySelectorAll('.log-entry, .pf-card').forEach(el=>obs.observe(el));
+</script>
+
+</body>
+</html>
