@@ -68,6 +68,12 @@
     transition:color .2s;
   }
   nav ul li a:hover, nav ul li a:focus-visible{color:var(--cyan);}
+  .btn-print{
+    font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--ink); background:var(--cyan); border:none; padding:8px 14px; cursor:pointer;
+    transition:background .2s, transform .2s;
+  }
+  .btn-print:hover{background:var(--paper); transform:translateY(-1px);}
   .nav-links{display:flex;}
   @media(max-width:720px){ .nav-links{gap:16px;} .nav-links li a{font-size:10px;} }
 
@@ -364,9 +370,33 @@
 
   ::selection{background:var(--magenta); color:var(--ink);}
 
+  .print-poster{display:none;}
+
   @media (prefers-reduced-motion: reduce){
     *{transition:none !important; animation:none !important;}
     .log-entry, .pf-card{opacity:1; transform:none;}
+  }
+
+  /* ---------- print ---------- */
+  @media print{
+    *{ animation:none !important; transition:none !important; }
+    body{background:#fff; color:#111;}
+    nav, .btn, .hero-cta, header.hero::before, video, .pf-video-tag::after{ display:none !important; }
+    .print-poster{ display:block !important; width:100%; height:210px; object-fit:cover; }
+    header.hero, .manifesto, .bitacora, .portfolio, .credentials, .allies, .community, footer, .services{
+      background:#fff !important; color:#111 !important; padding:20px 0;
+    }
+    .hero-sub, .status-label, .log-desc, .pf-desc, .ally-desc, .community-text, .section-head p{ color:#333 !important; }
+    .status-num, h1.hero-title em{ color:#111 !important; -webkit-text-fill-color:#111 !important; background:none !important; }
+    .status{ border-top:1px solid #ccc; }
+    .status-item{ border-left:1px solid #ccc; }
+    .log-entry, .pf-card, .ally-card, .vt-card, .cred-item{ border-color:#ccc !important; break-inside:avoid; page-break-inside:avoid; }
+    .pf-card{ background:#fff !important; border:1px solid #ccc !important; }
+    .log-org, .pf-client, .status-num{ color:#111 !important; }
+    .log-tags span, .pf-stack, .vt-tags span{ color:#111 !important; border-color:#999 !important; }
+    a{ color:#111 !important; text-decoration:underline; }
+    section{ padding:28px 0 !important; }
+    .footer-top, .footer-bottom{ border-color:#ccc !important; }
   }
 </style>
 </head>
@@ -381,6 +411,7 @@
       <li><a href="#portafolio">Portafolio</a></li>
       <li><a href="#formacion">Formación</a></li>
       <li><a href="#contacto">Contacto</a></li>
+      <li><button class="btn-print" onclick="window.print()" aria-label="Descargar o imprimir en PDF">↓ PDF</button></li>
     </ul>
   </div>
 </nav>
@@ -595,6 +626,7 @@
           <video autoplay muted loop playsinline poster="assets/video/poster_campus2600.jpg">
             <source src="assets/video/campus2600.mp4" type="video/mp4">
           </video>
+            <img class="print-poster" src="assets/video/poster_campus2600.jpg" alt="">
         </div>
         <div class="pf-body">
           <div class="pf-client">Cámara de Comercio de Bogotá · MinTIC</div>
@@ -609,6 +641,7 @@
           <video autoplay muted loop playsinline poster="assets/video/poster_colombia40.jpg">
             <source src="assets/video/colombia40.mp4" type="video/mp4">
           </video>
+            <img class="print-poster" src="assets/video/poster_colombia40.jpg" alt="">
         </div>
         <div class="pf-body">
           <div class="pf-client">MinTIC</div>
@@ -636,11 +669,13 @@
             <video autoplay muted loop playsinline poster="assets/video/poster_javeriana_mapping.jpg">
               <source src="assets/video/javeriana_mapping.mp4" type="video/mp4">
             </video>
+            <img class="print-poster" src="assets/video/poster_javeriana_mapping.jpg" alt="">
           </div>
           <div class="pf-video-tag">
             <video autoplay muted loop playsinline poster="assets/video/poster_javeriana_interactivo.jpg">
               <source src="assets/video/javeriana_interactivo.mp4" type="video/mp4">
             </video>
+            <img class="print-poster" src="assets/video/poster_javeriana_interactivo.jpg" alt="">
           </div>
         </div>
         <div class="pf-body">
@@ -681,6 +716,7 @@
           <video autoplay muted loop playsinline poster="assets/video/poster_mary_kay.jpg">
             <source src="assets/video/mary_kay.mp4" type="video/mp4">
           </video>
+            <img class="print-poster" src="assets/video/poster_mary_kay.jpg" alt="">
         </div>
         <div class="pf-body">
           <div class="pf-client">Mary Kay</div>
@@ -696,11 +732,13 @@
             <video autoplay muted loop playsinline poster="assets/video/poster_foro_educativo_a.jpg">
               <source src="assets/video/foro_educativo_a.mp4" type="video/mp4">
             </video>
+            <img class="print-poster" src="assets/video/poster_foro_educativo_a.jpg" alt="">
           </div>
           <div class="pf-video-tag">
             <video autoplay muted loop playsinline poster="assets/video/poster_foro_educativo_b.jpg">
               <source src="assets/video/foro_educativo_b.mp4" type="video/mp4">
             </video>
+            <img class="print-poster" src="assets/video/poster_foro_educativo_b.jpg" alt="">
           </div>
         </div>
         <div class="pf-body">
@@ -716,6 +754,7 @@
           <video autoplay muted loop playsinline poster="assets/video/poster_cci_world_chambers.jpg">
             <source src="assets/video/cci_world_chambers.mp4" type="video/mp4">
           </video>
+            <img class="print-poster" src="assets/video/poster_cci_world_chambers.jpg" alt="">
         </div>
         <div class="pf-body">
           <div class="pf-client">Cámara de Comercio de Bogotá</div>
@@ -730,6 +769,7 @@
           <video autoplay muted loop playsinline poster="assets/video/poster_avatar_host.jpg">
             <source src="assets/video/avatar_host.mp4" type="video/mp4">
           </video>
+            <img class="print-poster" src="assets/video/poster_avatar_host.jpg" alt="">
         </div>
         <div class="pf-body">
           <div class="pf-client">Zalento XD — Capacidad IA</div>
