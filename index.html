@@ -111,6 +111,18 @@
     50%{ transform: translate3d(-2%, 2%, 0) scale(1.06); }
     100%{ transform: translate3d(2%, -2%, 0) scale(1.02); }
   }
+  @keyframes heroIn{ from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:none;} }
+  @keyframes floatPhoto{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(-10px);} }
+  .hero-eyebrow{animation:heroIn .7s ease both;}
+  h1.hero-title{animation:heroIn .7s .1s ease both;}
+  .hero-sub{animation:heroIn .7s .2s ease both;}
+  .hero-cta{animation:heroIn .7s .3s ease both;}
+  .hero-photo-col{animation:heroIn .8s .35s ease both;}
+  .status-item{animation:heroIn .6s ease both;}
+  .status-item:nth-child(1){animation-delay:.45s;}
+  .status-item:nth-child(2){animation-delay:.52s;}
+  .status-item:nth-child(3){animation-delay:.59s;}
+  .status-item:nth-child(4){animation-delay:.66s;}
   header.hero::after{
     content:"";
     position:absolute; inset:auto 0 0 0; height:1px;
@@ -143,6 +155,7 @@
     width:220px; height:264px; object-fit:cover;
     filter:grayscale(1) contrast(1.05);
     border:1px solid var(--line-dark);
+    animation:floatPhoto 6s ease-in-out infinite;
   }
   .hero-role{
     font-family:var(--mono); font-size:12px; color:var(--mist); text-align:right; line-height:1.6;
@@ -213,64 +226,109 @@
 
   /* ---------- manifesto ---------- */
   /* ---------- services ---------- */
-  .services{background:var(--paper);}
+  .services{background:var(--paper); overflow:visible;}
   .svc-grid{
-    display:grid; grid-template-columns:repeat(4,1fr); gap:20px;
+    display:grid; grid-template-columns:repeat(4,1fr); gap:16px;
   }
   .svc-item{
-    position:relative; background:#fff; border:1px solid var(--line-light);
-    padding:28px 24px 26px; min-height:172px; display:flex; flex-direction:column; justify-content:space-between;
-    transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease, background .25s ease;
+    position:relative; overflow:hidden; background:#fff; border:1px solid var(--line-light);
+    padding:30px 24px 26px; min-height:172px; display:flex; flex-direction:column; justify-content:space-between;
     opacity:0; transform:translateY(14px);
+    transition:opacity .5s ease, transform .45s cubic-bezier(.22,1,.36,1), border-color .35s ease, box-shadow .45s ease, background .45s ease, color .35s ease;
   }
   .svc-item.in-view{opacity:1; transform:none;}
-  .svc-item:hover{
-    border-color:var(--ink); transform:translateY(-6px);
-    box-shadow:0 18px 30px -14px rgba(20,21,26,.28);
-    background:var(--ink); color:var(--paper);
+  .svc-item::before{
+    content:""; position:absolute; top:0; left:0; right:0; height:3px;
+    background:var(--magenta); transform:scaleX(.18); transform-origin:left; transition:transform .45s cubic-bezier(.22,1,.36,1);
   }
+  .svc-item:nth-child(even)::before{background:var(--cyan);}
+  .svc-item:hover::before{transform:scaleX(1);}
   .svc-num{
-    font-family:var(--mono); font-size:12px; color:var(--magenta);
-    width:34px; height:34px; display:flex; align-items:center; justify-content:center;
-    border:1px solid rgba(255,46,126,.35);
+    font-family:var(--mono); font-size:12px; font-weight:600; letter-spacing:.02em;
+    display:flex; align-items:center; gap:8px; color:var(--slate); transition:color .3s ease;
   }
-  .svc-item:hover .svc-num{border-color:var(--cyan); color:var(--cyan);}
-  .svc-label{font-family:var(--disp); font-size:17px; font-weight:600; line-height:1.3; margin-top:22px;}
+  .svc-num::before{
+    content:""; width:6px; height:6px; background:var(--magenta); flex:none; border-radius:50%;
+    transition:transform .4s cubic-bezier(.34,1.56,.64,1), box-shadow .3s ease;
+  }
+  .svc-item:nth-child(even) .svc-num::before{background:var(--cyan);}
+  .svc-label{font-family:var(--disp); font-size:17px; font-weight:600; line-height:1.3; margin-top:22px; transition:color .3s ease;}
+  .svc-item:hover{
+    background:var(--ink); color:var(--paper); border-color:var(--ink);
+    transform:translateY(-8px);
+    box-shadow:0 24px 42px -20px rgba(255,46,126,.4);
+  }
+  .svc-item:nth-child(even):hover{box-shadow:0 24px 42px -20px rgba(34,211,208,.4);}
+  .svc-item:hover .svc-num{color:var(--mist);}
+  .svc-item:hover .svc-num::before{transform:scale(1.9); box-shadow:0 0 12px 2px currentColor;}
+  .svc-item:nth-child(odd):hover .svc-num::before{box-shadow:0 0 12px 2px rgba(255,46,126,.7);}
+  .svc-item:nth-child(even):hover .svc-num::before{box-shadow:0 0 12px 2px rgba(34,211,208,.7);}
   @media(max-width:900px){ .svc-grid{grid-template-columns:repeat(2,1fr);} }
   @media(max-width:480px){ .svc-grid{grid-template-columns:1fr;} }
 
   .manifesto{background:var(--paper);}
   .manifesto-grid{
-    display:grid; grid-template-columns:1fr 1px 1fr; gap:48px; align-items:start;
+    display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:stretch;
   }
-  .manifesto-divider{background:var(--line-light); align-self:stretch;}
+  .manifesto-col{
+    position:relative; overflow:hidden; padding:44px 40px; color:var(--paper);
+    opacity:0; transform:translateY(16px); transition:opacity .5s ease, transform .5s ease;
+  }
+  .manifesto-col.in-view{opacity:1; transform:none;}
+  .manifesto-col::before{
+    content:attr(data-num); position:absolute; top:-.15em; right:14px;
+    font-family:var(--disp); font-weight:700; font-size:150px; line-height:1;
+    color:rgba(255,255,255,.06); pointer-events:none; z-index:0;
+  }
+  .manifesto-col > *{position:relative; z-index:1;}
+  .col-discipline{background:var(--ink);}
+  .col-narrative{background:linear-gradient(155deg, #3a0f2c 0%, #1e0d20 55%, #14151a 100%);}
   .manifesto-col .tag{
     font-family:var(--mono); font-size:11px; letter-spacing:.05em; text-transform:uppercase;
     display:inline-block; padding:5px 10px; margin-bottom:18px;
   }
-  .tag-slate{color:var(--slate); border:1px solid var(--line-light);}
-  .tag-magenta{color:var(--magenta); border:1px solid rgba(255,46,126,.35);}
-  .manifesto-col h3{font-family:var(--disp); font-size:22px; margin-bottom:14px; font-weight:600;}
-  .manifesto-col p{color:var(--slate); margin-bottom:12px;}
+  .col-discipline .tag-slate{color:var(--cyan); border:1px solid rgba(34,211,208,.35);}
+  .col-narrative .tag-magenta{color:var(--magenta); border:1px solid rgba(255,46,126,.4);}
+  .manifesto-col h3{font-family:var(--disp); font-size:22px; margin-bottom:14px; font-weight:600; color:var(--paper);}
+  .manifesto-col p{color:var(--mist); margin-bottom:12px; font-size:15px;}
   .manifesto-bridge{
     text-align:center; margin-top:52px; font-family:var(--disp); font-size:20px;
     max-width:46ch; margin-left:auto; margin-right:auto; line-height:1.5;
   }
   .manifesto-bridge span{color:var(--magenta);}
-  @media(max-width:760px){ .manifesto-grid{grid-template-columns:1fr;} .manifesto-divider{display:none;} }
+  @media(max-width:760px){ .manifesto-grid{grid-template-columns:1fr;} }
+  @media(max-width:560px){ .manifesto-col{padding:34px 26px;} .manifesto-col::before{font-size:100px;} }
 
-  /* ---------- bitacora (career log) ---------- */
+  /* ---------- bitacora (career log / timeline) ---------- */
   .bitacora{background:var(--ink); color:var(--paper);}
   .bitacora .section-head p{color:var(--mist);}
   .bitacora .section-head .eyebrow{color:var(--cyan);}
+  .timeline{position:relative; padding-left:64px;}
+  .timeline::before{
+    content:""; position:absolute; left:14px; top:10px; bottom:10px; width:2px;
+    background:linear-gradient(180deg, var(--magenta), var(--cyan) 50%, var(--magenta));
+    opacity:.4;
+  }
   .log-entry{
-    display:grid; grid-template-columns:120px 1fr; gap:28px;
+    position:relative;
     padding:26px 0; border-top:1px solid var(--line-dark);
-    opacity:0; transform:translateY(14px); transition:opacity .5s ease, transform .5s ease;
+    opacity:0; transform:translateX(-18px); transition:opacity .5s ease, transform .5s ease;
   }
   .log-entry.in-view{opacity:1; transform:none;}
   .log-entry:last-child{border-bottom:1px solid var(--line-dark);}
-  .log-date{font-family:var(--mono); font-size:12px; color:var(--mist); padding-top:3px; letter-spacing:.03em;}
+  .log-node{
+    position:absolute; left:-49px; top:33px; width:14px; height:14px; border-radius:50%;
+    background:var(--ink); border:2px solid var(--mist); z-index:2; transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .accent-magenta .log-node{border-color:var(--magenta); box-shadow:0 0 0 4px rgba(255,46,126,.12);}
+  .accent-cyan .log-node{border-color:var(--cyan); box-shadow:0 0 0 4px rgba(34,211,208,.12);}
+  .log-entry:hover .log-node{transform:scale(1.3);}
+  .log-date{
+    font-family:var(--mono); font-size:11px; letter-spacing:.05em; text-transform:uppercase;
+    display:inline-block; color:var(--mist); border:1px solid var(--line-dark); padding:4px 10px; margin-bottom:12px;
+  }
+  .accent-magenta .log-date{color:var(--magenta); border-color:rgba(255,46,126,.35);}
+  .accent-cyan .log-date{color:var(--cyan); border-color:rgba(34,211,208,.35);}
   .log-role{font-family:var(--disp); font-size:18px; font-weight:600;}
   .log-org{font-family:var(--mono); font-size:12px; color:var(--cyan); margin-top:4px; letter-spacing:.03em;}
   .log-desc{color:var(--mist); margin-top:10px; font-size:15px; max-width:62ch;}
@@ -281,7 +339,11 @@
   }
   .log-tags span.t-content{color:var(--magenta); border-color:rgba(255,46,126,.4);}
   .log-tags span.t-risk{color:var(--cyan); border-color:rgba(34,211,208,.4);}
-  @media(max-width:600px){ .log-entry{grid-template-columns:1fr;} .log-date{padding-top:0;} }
+  @media(max-width:600px){
+    .timeline{padding-left:40px;}
+    .timeline::before{left:5px;}
+    .log-node{left:-33px; width:11px; height:11px; top:31px;}
+  }
 
   /* ---------- portfolio ---------- */
   .portfolio{background:var(--paper-dim);}
@@ -358,11 +420,26 @@
     font-family:var(--mono); font-size:12px; text-transform:uppercase; letter-spacing:.14em;
     color:var(--magenta); margin-bottom:18px;
   }
-  .cred-item{padding:14px 0; border-top:1px solid var(--line-light);}
-  .cred-item:last-child{padding-bottom:0;}
-  .cred-role{font-family:var(--disp); font-weight:600; font-size:15px;}
-  .cred-org{font-family:var(--mono); font-size:12px; color:var(--slate); margin-top:3px; letter-spacing:.03em;}
-  @media(max-width:760px){ .cred-cols{grid-template-columns:1fr; gap:8px;} }
+  .cred-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  .cred-item{
+    position:relative; background:#fff; border:1px solid var(--line-light);
+    padding:18px 18px 16px; transition:background .3s ease, color .3s ease, transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s ease;
+  }
+  .cred-item:hover{
+    background:var(--ink); color:var(--paper); transform:translateY(-4px);
+    box-shadow:0 16px 28px -16px rgba(20,21,26,.35);
+  }
+  .cred-dot{width:7px; height:7px; border-radius:50%; background:var(--magenta); display:inline-block; margin-bottom:10px;}
+  .cred-grid .cred-item:nth-child(even) .cred-dot{background:var(--cyan);}
+  .cred-role{font-family:var(--disp); font-weight:600; font-size:15px; line-height:1.35;}
+  .cred-org{font-family:var(--mono); font-size:12px; color:var(--slate); margin-top:6px; letter-spacing:.03em;}
+  .cred-item:hover .cred-org{color:var(--mist);}
+  .cred-progress{
+    position:absolute; top:14px; right:14px; font-family:var(--mono); font-size:9px; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--cyan); border:1px solid rgba(34,211,208,.4); padding:3px 7px;
+  }
+  @media(max-width:760px){ .cred-cols{grid-template-columns:1fr; gap:32px;} }
+  @media(max-width:480px){ .cred-grid{grid-template-columns:1fr;} }
 
   /* ---------- allies ---------- */
   .allies{background:var(--ink); color:var(--paper); padding:80px 0;}
@@ -373,6 +450,11 @@
     border:1px solid var(--line-dark); padding:28px; display:flex; gap:20px; align-items:flex-start;
   }
   .ally-logo{width:60px; height:60px; border-radius:50%; object-fit:cover; flex:none; background:#fff; padding:4px;}
+  .ally-badge{
+    width:60px; height:60px; flex:none; border-radius:50%; overflow:hidden; background:#fff;
+    display:flex; align-items:center; justify-content:center; border:1px solid var(--line-dark);
+  }
+  .ally-badge img{max-width:80%; max-height:80%; object-fit:contain; display:block;}
   .ally-name{font-family:var(--disp); font-weight:600; font-size:18px;}
   .ally-role{font-family:var(--mono); font-size:11px; color:var(--cyan); text-transform:uppercase; letter-spacing:.05em; margin-top:3px;}
   .ally-desc{color:var(--mist); font-size:15px; margin-top:10px;}
@@ -380,11 +462,18 @@
   @media(max-width:600px){ .allies-grid{grid-template-columns:1fr;} }
 
   /* ---------- community strip ---------- */
-  .community{background:var(--paper-dim); padding:40px 0;}
-  .community .wrap{display:flex; align-items:center; gap:40px; flex-wrap:wrap;}
-  .community-item{display:flex; align-items:center; gap:20px;}
-  .community img{height:52px; width:auto; max-width:110px; object-fit:contain; border:1px solid var(--line-light); border-radius:6px; background:#000; padding:6px 10px;}
-  .community img.round{border-radius:50%; height:52px; width:52px; object-fit:cover; background:#fff; padding:0;}
+  .community{background:var(--paper-dim); padding:44px 0;}
+  .community .wrap{display:flex; align-items:center; gap:44px; flex-wrap:wrap;}
+  .community-item{display:flex; align-items:center; gap:18px;}
+  .community-badge{
+    width:60px; height:60px; flex:none; border-radius:50%; overflow:hidden;
+    display:flex; align-items:center; justify-content:center;
+    border:1px solid var(--line-light); background:#fff; transition:transform .3s ease, border-color .3s ease;
+  }
+  .community-item:hover .community-badge{transform:scale(1.06); border-color:var(--magenta);}
+  .community-badge img{max-width:100%; max-height:100%; object-fit:contain; display:block;}
+  .community-badge.dark{background:#0c0c0e;}
+  .community-badge.dark img{max-width:76%; max-height:76%;}
   .community-text{font-family:var(--mono); font-size:12px; color:var(--slate); letter-spacing:.02em;}
   .community-text strong{color:var(--ink); font-family:var(--body); font-weight:600;}
 
@@ -413,15 +502,19 @@
 
   @media (prefers-reduced-motion: reduce){
     *{transition:none !important; animation:none !important;}
-    .log-entry, .pf-card, .svc-item{opacity:1; transform:none;}
+    .log-entry, .pf-card, .svc-item, .manifesto-col{opacity:1; transform:none;}
   }
 
   /* ---------- print ---------- */
   @media print{
     *{ animation:none !important; transition:none !important; }
     body{background:#fff; color:#111;}
-    .log-entry, .pf-card, .svc-item{ opacity:1 !important; transform:none !important; }
+    .log-entry, .pf-card, .svc-item, .manifesto-col{ opacity:1 !important; transform:none !important; }
     .svc-item:hover{ background:#fff !important; color:#111 !important; }
+    .manifesto-col{ background:#fff !important; color:#111 !important; border:1px solid #ccc !important; }
+    .manifesto-col::before{ display:none !important; }
+    .manifesto-col p{ color:#333 !important; }
+    .manifesto-col h3{ color:#111 !important; }
     nav, .btn, .hero-cta, header.hero::before, video, .pf-video-tag::after{ display:none !important; }
     .pf-images .print-poster, .pf-images img.print-poster{ display:block !important; width:100%; height:210px; object-fit:cover; }
     header.hero, .manifesto, .bitacora, .portfolio, .credentials, .allies, .community, footer, .services{
@@ -434,6 +527,9 @@
     .log-entry, .pf-card, .ally-card, .vt-card, .cred-item{ border-color:#ccc !important; break-inside:avoid; page-break-inside:avoid; }
     .pf-card{ background:#fff !important; border:1px solid #ccc !important; }
     .log-org, .pf-client, .status-num{ color:#111 !important; }
+    .log-date{ color:#111 !important; border-color:#999 !important; }
+    .log-node{ border-color:#999 !important; box-shadow:none !important; }
+    .timeline::before{ opacity:.25; }
     .log-tags span, .pf-stack, .vt-tags span{ color:#111 !important; border-color:#999 !important; }
     a{ color:#111 !important; text-decoration:underline; }
     section{ padding:28px 0 !important; }
@@ -533,14 +629,13 @@
       <p>No son dos hojas de vida distintas. Son la misma pregunta aplicada a contextos distintos: ¿qué necesita esta audiencia para confiar?</p>
     </div>
     <div class="manifesto-grid">
-      <div class="manifesto-col">
+      <div class="manifesto-col col-discipline" data-num="01">
         <span class="tag tag-slate">La disciplina</span>
         <h3>Procesos que sostienen la confianza</h3>
         <p>Diez años diseñando marcos de control, liderando equipos multidisciplinarios y coordinando proyectos con entes de control, aliados y comunidades en sectores salud, financiero, asegurador y de cooperación internacional.</p>
         <p>De ahí viene mi manera de trabajar: pensamiento sistémico, seguimiento riguroso, reporting claro y capacidad de sostener proyectos complejos de principio a fin — y de formar equipos: he capacitado en cultura preventiva y gestión de riesgos a lo largo de toda mi trayectoria, apoyada en estudios de neurociencia aplicada para entender cómo regulan sus equipos y sus decisiones.</p>
       </div>
-      <div class="manifesto-divider"></div>
-      <div class="manifesto-col">
+      <div class="manifesto-col col-narrative" data-num="02">
         <span class="tag tag-magenta">La narrativa</span>
         <h3>Contenido que sostiene la conversación</h3>
         <p>Desde 2020 construyo experiencia de cliente, comunidad y ahora contenido de marca: coordino cuentas y he participado en proyectos creativos con el estudio Zalento XD / Belance Human Lab para marcas como Bancolombia, MinTIC, la Universidad Javeriana, Mary Kay y el Foro Educativo Nacional, y asesoro emprendimientos en estrategia, investigación y copywriting.</p>
@@ -559,7 +654,10 @@
       <p>Sin editar ni omitir nada: así se ve una carrera construida por capas, de control de riesgos a estrategia de contenido.</p>
     </div>
 
-    <div class="log-entry">
+    <div class="timeline">
+
+    <div class="log-entry accent-magenta">
+      <span class="log-node"></span>
       <div class="log-date">2025 — 2026</div>
       <div>
         <div class="log-role">Aliada estratégica — Gestión de cuenta y coordinación de proyectos creativos</div>
@@ -569,7 +667,8 @@
       </div>
     </div>
 
-    <div class="log-entry">
+    <div class="log-entry accent-cyan">
+      <span class="log-node"></span>
       <div class="log-date">2025 — ene. 2026</div>
       <div>
         <div class="log-role">Consultoría organizacional — Gestión de riesgos y formación</div>
@@ -579,7 +678,8 @@
       </div>
     </div>
 
-    <div class="log-entry">
+    <div class="log-entry accent-cyan">
+      <span class="log-node"></span>
       <div class="log-date">2023 — 2024</div>
       <div>
         <div class="log-role">Coordinadora de Gestión de Riesgos — Colombia</div>
@@ -589,7 +689,8 @@
       </div>
     </div>
 
-    <div class="log-entry">
+    <div class="log-entry accent-magenta">
+      <span class="log-node"></span>
       <div class="log-date">2020 — 2023</div>
       <div>
         <div class="log-role">Directora de Proyectos y Experiencia del Cliente</div>
@@ -599,7 +700,8 @@
       </div>
     </div>
 
-    <div class="log-entry">
+    <div class="log-entry accent-magenta">
+      <span class="log-node"></span>
       <div class="log-date">2020 — 2023</div>
       <div>
         <div class="log-role">Asesora de Marca y Comunicación — Emprendimientos</div>
@@ -609,7 +711,8 @@
       </div>
     </div>
 
-    <div class="log-entry">
+    <div class="log-entry accent-cyan">
+      <span class="log-node"></span>
       <div class="log-date">2018 — 2020</div>
       <div>
         <div class="log-role">Profesional Senior de Riesgos y Entes de Control</div>
@@ -619,7 +722,8 @@
       </div>
     </div>
 
-    <div class="log-entry">
+    <div class="log-entry accent-cyan">
+      <span class="log-node"></span>
       <div class="log-date">2016 — 2018</div>
       <div>
         <div class="log-role">Profesional Senior — Sistema de Riesgo Operativo</div>
@@ -629,7 +733,8 @@
       </div>
     </div>
 
-    <div class="log-entry">
+    <div class="log-entry accent-magenta">
+      <span class="log-node"></span>
       <div class="log-date">2015 — 2016</div>
       <div>
         <div class="log-role">Coordinadora de Proyectos — Innovación y Formación</div>
@@ -639,7 +744,8 @@
       </div>
     </div>
 
-    <div class="log-entry">
+    <div class="log-entry accent-cyan">
+      <span class="log-node"></span>
       <div class="log-date">2008 — 2015</div>
       <div>
         <div class="log-role">Analista / Asistente Técnica Nacional — Automóviles y SOAT</div>
@@ -649,6 +755,7 @@
       </div>
     </div>
 
+    </div>
   </div>
 </section>
 
@@ -864,36 +971,48 @@
     <div class="cred-cols">
       <div class="cred-block">
         <h4>Educación formal</h4>
-        <div class="cred-item">
-          <div class="cred-role">Ingeniería Industrial</div>
-          <div class="cred-org">Universidad ECCI — 2014</div>
-        </div>
-        <div class="cred-item">
-          <div class="cred-role">Especialista en Gerencia de Seguridad y Salud en el Trabajo</div>
-          <div class="cred-org">Universidad ECCI — 2014–2015</div>
-        </div>
-        <div class="cred-item">
-          <div class="cred-role">Ciencias del Comportamiento Organizacional</div>
-          <div class="cred-org">Universidad de los Andes — en curso</div>
-        </div>
-        <div class="cred-item">
-          <div class="cred-role">Marketing Digital</div>
-          <div class="cred-org">Digital House</div>
+        <div class="cred-grid">
+          <div class="cred-item">
+            <span class="cred-dot"></span>
+            <div class="cred-role">Ingeniería Industrial</div>
+            <div class="cred-org">Universidad ECCI — 2014</div>
+          </div>
+          <div class="cred-item">
+            <span class="cred-dot"></span>
+            <div class="cred-role">Especialista en Gerencia de Seguridad y Salud en el Trabajo</div>
+            <div class="cred-org">Universidad ECCI — 2014–2015</div>
+          </div>
+          <div class="cred-item">
+            <span class="cred-progress">En curso</span>
+            <span class="cred-dot"></span>
+            <div class="cred-role">Ciencias del Comportamiento Organizacional</div>
+            <div class="cred-org">Universidad de los Andes</div>
+          </div>
+          <div class="cred-item">
+            <span class="cred-dot"></span>
+            <div class="cred-role">Marketing Digital</div>
+            <div class="cred-org">Digital House</div>
+          </div>
         </div>
       </div>
       <div class="cred-block">
         <h4>Certificaciones y formación complementaria</h4>
-        <div class="cred-item">
-          <div class="cred-role">Risk Manager — ISO 31000</div>
-          <div class="cred-org">PECB Canadá — 2019</div>
-        </div>
-        <div class="cred-item">
-          <div class="cred-role">Design thinking y aprendizaje experiencial · IA aplicada (LAB10)</div>
-          <div class="cred-org">Formación complementaria</div>
-        </div>
-        <div class="cred-item">
-          <div class="cred-role">Coach en PNL · Estudios de neurociencia aplicada y trauma somático</div>
-          <div class="cred-org">IATP, EE. UU. — Certified Trauma Somático</div>
+        <div class="cred-grid">
+          <div class="cred-item">
+            <span class="cred-dot"></span>
+            <div class="cred-role">Risk Manager — ISO 31000</div>
+            <div class="cred-org">PECB Canadá — 2019</div>
+          </div>
+          <div class="cred-item">
+            <span class="cred-dot"></span>
+            <div class="cred-role">Design thinking y aprendizaje experiencial · IA aplicada (LAB10)</div>
+            <div class="cred-org">Formación complementaria</div>
+          </div>
+          <div class="cred-item">
+            <span class="cred-dot"></span>
+            <div class="cred-role">Coach en PNL · Estudios de neurociencia aplicada y trauma somático</div>
+            <div class="cred-org">IATP, EE. UU. — Certified Trauma Somático</div>
+          </div>
         </div>
       </div>
     </div>
@@ -909,7 +1028,7 @@
     </div>
     <div class="allies-grid">
       <div class="ally-card">
-        <img class="ally-logo" src="assets/zalento_logo_crop.jpg" alt="Zalento XD — Studio Creativo" style="border-radius:8px; object-fit:contain;">
+        <span class="ally-badge"><img src="assets/zalento_logo_crop.jpg" alt="Zalento XD — Studio Creativo"></span>
         <div>
           <div class="ally-name">Zalento XD</div>
           <div class="ally-role">Contenido audiovisual · Video mapping · Motion graphics</div>
@@ -917,7 +1036,7 @@
         </div>
       </div>
       <div class="ally-card">
-        <img class="ally-logo" src="assets/belance_logo.jpg" alt="Belance Human Lab">
+        <span class="ally-badge"><img src="assets/belance_logo.jpg" alt="Belance Human Lab"></span>
         <div>
           <div class="ally-name">Belance Human Lab</div>
           <div class="ally-role">Arquitectura neuroexperiencial</div>
@@ -925,7 +1044,7 @@
         </div>
       </div>
       <div class="ally-card">
-        <img class="ally-logo" src="assets/colmenia_logo.jpg" alt="Colmen IA">
+        <span class="ally-badge"><img src="assets/colmenia_logo.jpg" alt="Colmen IA"></span>
         <div>
           <div class="ally-name">Colmen IA</div>
           <div class="ally-role">Inteligencia artificial aplicada a marketing y proyectos</div>
@@ -939,11 +1058,11 @@
 <section class="community">
   <div class="wrap">
     <div class="community-item">
-      <img class="round" src="assets/ignia_logo.jpg" alt="Logo de Ignia">
+      <span class="community-badge"><img src="assets/ignia_logo.jpg" alt="Logo de Ignia"></span>
       <div class="community-text"><strong>Miembro de la comunidad Ignia</strong> — educación en negocios, IA/Tech &amp; diseño, con los mejores practitioners como profesores.</div>
     </div>
     <div class="community-item">
-      <img src="assets/lab10_logo.jpg" alt="Logo de LAB10">
+      <span class="community-badge dark"><img src="assets/lab10_logo.jpg" alt="Logo de LAB10"></span>
       <div class="community-text"><strong>Miembro de la comunidad LAB10</strong> — la comunidad de AI Builders más grande de Latam.</div>
     </div>
   </div>
@@ -970,7 +1089,7 @@
   const obs = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in-view'); obs.unobserve(e.target); } });
   }, {threshold:0.15});
-  document.querySelectorAll('.log-entry, .pf-card, .svc-item').forEach(el=>obs.observe(el));
+  document.querySelectorAll('.log-entry, .pf-card, .svc-item, .manifesto-col').forEach(el=>obs.observe(el));
 </script>
 
 </body>
