@@ -392,7 +392,7 @@
 
   ::selection{background:var(--magenta); color:var(--ink);}
 
-  .print-poster{display:none;}
+  .pf-images .print-poster, .pf-images img.print-poster{display:none !important;}
 
   @media (prefers-reduced-motion: reduce){
     *{transition:none !important; animation:none !important;}
@@ -404,7 +404,7 @@
     *{ animation:none !important; transition:none !important; }
     body{background:#fff; color:#111;}
     nav, .btn, .hero-cta, header.hero::before, video, .pf-video-tag::after{ display:none !important; }
-    .print-poster{ display:block !important; width:100%; height:210px; object-fit:cover; }
+    .pf-images .print-poster, .pf-images img.print-poster{ display:block !important; width:100%; height:210px; object-fit:cover; }
     header.hero, .manifesto, .bitacora, .portfolio, .credentials, .allies, .community, footer, .services{
       background:#fff !important; color:#111 !important; padding:20px 0;
     }
