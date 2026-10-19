@@ -513,7 +513,7 @@
 
   .pf-role-note{
     margin-top:44px; padding:22px 26px; border:1px dashed var(--line-light);
-    font-family:var(--mono); font-size:13px; color:var(--slate); background:var(--paper);
+    font-family:var(--body); font-size:14px; line-height:1.6; color:var(--slate); background:var(--paper);
   }
   .pf-role-note strong{color:var(--ink);}
 
@@ -638,46 +638,204 @@
     .log-entry, .pf-card, .svc-item, .manifesto-col, .listen-row{opacity:1; transform:none;}
   }
 
-  /* ---------- print ---------- */
+
+  /* ---------- ajustes de lectura y móvil ---------- */
+  .section-head h2, .footer-top h2, .listen-cta h3{line-height:1.15;}
+  .manifesto-col h3, .pf-title, .listen-row h3, .log-role, .ventures-head h3, .ally-name, .vt-name, .cred-role{line-height:1.3;}
+  @media(max-width:480px){
+    .svc-item{min-height:0; padding:22px 20px 20px;}
+    .svc-label{margin-top:12px;}
+    .svc-feature{padding:24px 20px;}
+    .footer-top h2{max-width:none;}
+    .section-head{margin-bottom:34px;}
+  }
+
+  /* ---------- print-only helpers (ocultos en pantalla) ---------- */
+  .print-only{display:none;}
+
+  /* ---------- print / PDF: versión documento ---------- */
+  @page{
+    size:Letter;
+    margin:16mm 15mm 18mm;
+    @bottom-left{ content:"Julieth Rubio · Estrategia, contenido y marca"; font-family:'JetBrains Mono', monospace; font-size:7.5pt; color:#6b7080; }
+    @bottom-right{ content:"Página " counter(page) " de " counter(pages); font-family:'JetBrains Mono', monospace; font-size:7.5pt; color:#6b7080; }
+  }
   @media print{
-    *{ animation:none !important; transition:none !important; }
-    body{background:#fff; color:#111;}
-    .log-entry, .pf-card, .svc-item, .manifesto-col, .listen-row{ opacity:1 !important; transform:none !important; }
-    .listen, .listen-cta{ background:#fff !important; color:#111 !important; padding:20px 0; }
-    .listen-cta{ border:1px solid #ccc !important; padding:20px !important; }
-    .listen::before, .wave-panel{ display:none !important; }
-    .listen-top{ grid-template-columns:1fr !important; }
-    .listen h2 em, .listen-quote span{ background:none !important; -webkit-text-fill-color:#111 !important; color:#111 !important; }
-    .listen-sub, .listen-desc p, .listen-row p, .listen-en, .listen-cta p, .listen-tag-label, .listen-desc p:first-child{ color:#333 !important; }
-    .listen-quote, .listen-row, .listen-areas{ border-color:#ccc !important; }
-    .listen-row{ break-inside:avoid; page-break-inside:avoid; }
-    .listen-num, .listen-label, .listen-new, .listen-kicker .eyebrow{ color:#111 !important; border-color:#999 !important; }
-    .svc-feature .svc-desc{ color:#333 !important; }
-    .svc-new{ color:#111 !important; border-color:#999 !important; }
-    .svc-item:hover{ background:#fff !important; color:#111 !important; }
-    .manifesto-col{ background:#fff !important; color:#111 !important; border:1px solid #ccc !important; }
-    .manifesto-col::before{ display:none !important; }
-    .manifesto-col p{ color:#333 !important; }
-    .manifesto-col h3{ color:#111 !important; }
-    nav, .btn, .hero-cta, header.hero::before, video, .pf-video-tag::after{ display:none !important; }
-    .pf-images .print-poster, .pf-images img.print-poster{ display:block !important; width:100%; height:210px; object-fit:cover; }
-    header.hero, .manifesto, .bitacora, .portfolio, .credentials, .allies, .community, footer, .services{
-      background:#fff !important; color:#111 !important; padding:20px 0;
-    }
-    .hero-sub, .status-label, .log-desc, .pf-desc, .ally-desc, .community-text, .section-head p{ color:#333 !important; }
-    .status-num, h1.hero-title em{ color:#111 !important; -webkit-text-fill-color:#111 !important; background:none !important; }
-    .status{ border-top:1px solid #ccc; }
-    .status-item{ border-left:1px solid #ccc; }
-    .log-entry, .pf-card, .ally-card, .vt-card, .cred-item{ border-color:#ccc !important; break-inside:avoid; page-break-inside:avoid; }
-    .pf-card{ background:#fff !important; border:1px solid #ccc !important; }
-    .log-org, .pf-client, .status-num{ color:#111 !important; }
-    .log-date{ color:#111 !important; border-color:#999 !important; }
-    .log-node{ border-color:#999 !important; box-shadow:none !important; }
-    .timeline::before{ opacity:.25; }
-    .log-tags span, .pf-stack, .vt-tags span{ color:#111 !important; border-color:#999 !important; }
-    a{ color:#111 !important; text-decoration:underline; }
-    section{ padding:28px 0 !important; }
-    .footer-top, .footer-bottom{ border-color:#ccc !important; }
+    :root{ --p-ink:#16171d; --p-text:#2d313b; --p-soft:#5a5f6b; --p-line:#d9d6cf; --p-wash:#f5f3ef; --p-mag:#c21458; --p-cy:#0a8481; }
+    *{ -webkit-print-color-adjust:exact; print-color-adjust:exact; animation:none !important; transition:none !important; }
+    html{ zoom:.84; }
+    body{ background:#fff !important; color:var(--p-ink); font-size:15px; line-height:1.5; }
+    a{ color:inherit !important; text-decoration:none !important; }
+    .wrap{ max-width:none !important; padding:0 !important; }
+
+    /* ocultar lo interactivo */
+    nav, .btn, .hero-cta, video, .pf-video-tag::after, .wave-panel, .listen-cta-btns, .svc-cta,
+    header.hero::before, header.hero::after, .listen::before, .manifesto-col::before, .hero-eyebrow{ display:none !important; }
+    .print-only{ display:block !important; }
+
+    /* estructura de secciones */
+    section{ background:#fff !important; color:var(--p-ink) !important; padding:20px 0 0 !important; margin-top:20px; border-top:0.5pt solid var(--p-line); overflow:visible !important; }
+    .services{ margin-top:16px; }
+    .section-head{ margin-bottom:14px !important; max-width:none !important; break-after:avoid; page-break-after:avoid; break-inside:avoid; page-break-inside:avoid; }
+    .section-head *{ break-after:avoid; page-break-after:avoid; }
+    section{ orphans:3; widows:3; }
+    .eyebrow, .section-head .eyebrow{ color:var(--p-mag) !important; font-size:9.5px !important; margin-bottom:6px !important; }
+    .section-head h2{ font-size:22px !important; color:var(--p-ink) !important; }
+    .section-head p{ color:var(--p-soft) !important; font-size:12.5px !important; margin-top:6px !important; }
+
+    /* portada = encabezado de documento */
+    header.hero{ background:#fff !important; color:var(--p-ink) !important; padding:0 0 14px !important; overflow:visible !important; border-bottom:2px solid var(--p-ink); }
+    .hero-grid{ display:grid !important; grid-template-columns:1fr 150px !important; gap:28px !important; align-items:start !important; text-align:left !important; padding:0 0 4px !important; }
+    .print-name{ font-family:var(--disp); font-weight:700; font-size:36px; line-height:1.05; letter-spacing:-.01em; color:var(--p-ink); }
+    .print-role{ font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--p-mag); margin-top:8px; }
+    .print-contact{ margin-top:10px; font-family:var(--mono); font-size:10.5px; color:var(--p-soft); line-height:1.7; }
+    h1.hero-title{ font-size:19px !important; line-height:1.25 !important; margin-top:16px !important; color:var(--p-ink) !important; }
+    h1.hero-title br{ display:none; }
+    h1.hero-title em{ margin-left:.3em; }
+    h1.hero-title em{ background:none !important; -webkit-text-fill-color:var(--p-mag) !important; color:var(--p-mag) !important; }
+    .hero-sub{ color:var(--p-text) !important; font-size:13px !important; max-width:none !important; margin:8px 0 0 !important; }
+    .hero-sub strong{ color:var(--p-ink) !important; }
+    .hero-photo-col{ margin:0 !important; align-items:flex-start !important; flex-direction:column !important; gap:8px !important; }
+    .hero-photo{ width:118px !important; height:142px !important; border:0.5pt solid var(--p-line) !important; }
+    .hero-role{ text-align:left !important; color:var(--p-soft) !important; font-size:9.5px !important; line-height:1.5 !important; }
+    .hero-role strong{ color:var(--p-ink) !important; font-size:10px !important; }
+
+    .status{ background:var(--p-wash) !important; border:0.5pt solid var(--p-line) !important; margin-top:12px; }
+    .status-row{ display:grid !important; grid-template-columns:repeat(4,1fr) !important; }
+    .status-item{ border-left:0.5pt solid var(--p-line) !important; border-top:0 !important; padding:10px 12px !important; }
+    .status-item:first-child{ border-left:0 !important; }
+    .status-num{ color:var(--p-mag) !important; font-size:20px !important; }
+    .status-label{ color:var(--p-soft) !important; font-size:8.5px !important; }
+
+    /* servicios */
+    .svc-grid{ grid-template-columns:repeat(4,1fr) !important; gap:8px !important; }
+    .svc-item{ min-height:0 !important; padding:12px !important; background:#fff !important; color:var(--p-ink) !important; border:0.5pt solid var(--p-line) !important; opacity:1 !important; transform:none !important; box-shadow:none !important; overflow:visible !important; break-inside:avoid; }
+    .svc-item::before{ transform:none !important; height:2px !important; }
+    .svc-num{ color:var(--p-soft) !important; font-size:9.5px !important; }
+    .svc-label{ font-size:12px !important; margin-top:10px !important; color:var(--p-ink) !important; }
+    .svc-feature{ flex-direction:row !important; padding:12px 14px !important; }
+    .svc-feature .svc-label{ font-size:13.5px !important; margin-top:6px !important; }
+    .svc-desc{ color:var(--p-text) !important; font-size:11px !important; margin-top:4px !important; }
+
+    /* etiquetas / chips */
+    .log-tags{ margin-top:7px !important; }
+    .log-tags span{ font-size:8.5px !important; padding:2px 7px !important; }
+    .log-tags span.t-content{ color:var(--p-mag) !important; border-color:rgba(194,20,88,.45) !important; }
+    .log-tags span.t-risk{ color:var(--p-cy) !important; border-color:rgba(10,132,129,.5) !important; }
+
+    /* voz e IA */
+    .listen-top{ grid-template-columns:1fr !important; gap:0 !important; }
+    .listen-kicker .eyebrow{ color:var(--p-mag) !important; }
+    .listen h2{ font-size:24px !important; color:var(--p-ink) !important; }
+    .listen h2 em{ background:none !important; -webkit-text-fill-color:var(--p-mag) !important; color:var(--p-mag) !important; }
+    .listen-sub{ color:var(--p-ink) !important; font-size:13.5px !important; margin-top:10px !important; }
+    .listen-en{ color:var(--p-soft) !important; font-size:10.5px !important; }
+    .listen-desc{ margin-top:12px !important; max-width:none !important; }
+    .listen-desc p{ color:var(--p-text) !important; font-size:12px !important; margin-bottom:6px !important; }
+    .listen-desc p:first-child{ color:var(--p-ink) !important; font-size:14px !important; }
+    .listen-quote{ margin:14px 0 !important; padding:12px 0 !important; font-size:17px !important; color:var(--p-ink) !important; border-color:var(--p-line) !important; break-inside:avoid; }
+    .listen-quote span{ color:var(--p-cy) !important; }
+    .listen-tags{ grid-template-columns:1fr 1fr !important; gap:16px !important; margin-bottom:24px !important; }
+    .listen-tag-label{ color:var(--p-soft) !important; font-size:9px !important; margin-bottom:6px !important; }
+    .listen-tags .log-tags span{ font-size:9px !important; padding:3px 7px !important; }
+    .listen-areas{ margin-bottom:16px !important; }
+    .listen-label{ color:var(--p-mag) !important; margin-bottom:8px !important; }
+    .listen-row{ grid-template-columns:34px 1fr 1.4fr !important; gap:12px !important; padding:10px 0 !important; border-color:var(--p-line) !important; opacity:1 !important; transform:none !important; break-inside:avoid; }
+    .listen-row::after{ display:none !important; }
+    .listen-row p{ grid-column:auto !important; }
+    .listen-num{ color:var(--p-mag) !important; font-size:10px !important; }
+    .listen-row h3{ font-size:12.5px !important; color:var(--p-ink) !important; }
+    .listen-row p{ font-size:11px !important; color:var(--p-text) !important; }
+    .listen-cta{ display:block !important; background:var(--p-wash) !important; border:0.5pt solid var(--p-line) !important; padding:14px 16px !important; break-inside:avoid; }
+    .listen-cta h3{ font-size:14px !important; color:var(--p-ink) !important; margin-bottom:4px !important; }
+    .listen-cta p{ color:var(--p-text) !important; font-size:11px !important; max-width:none !important; }
+
+    /* cómo trabajo */
+    .manifesto-grid{ grid-template-columns:1fr 1fr !important; gap:12px !important; }
+    .manifesto-col{ background:var(--p-wash) !important; color:var(--p-ink) !important; border:0.5pt solid var(--p-line) !important; padding:12px 14px !important; opacity:1 !important; transform:none !important; break-inside:avoid; }
+    .manifesto-col .tag{ font-size:9px !important; margin-bottom:10px !important; }
+    .col-discipline .tag-slate{ color:var(--p-cy) !important; border-color:rgba(10,132,129,.5) !important; }
+    .col-narrative .tag-magenta{ color:var(--p-mag) !important; border-color:rgba(194,20,88,.5) !important; }
+    .manifesto-col h3{ color:var(--p-ink) !important; font-size:14px !important; margin-bottom:8px !important; }
+    .manifesto-col p{ color:var(--p-text) !important; font-size:10.5px !important; line-height:1.45 !important; margin-bottom:5px !important; }
+    .manifesto-grid{ break-after:avoid; page-break-after:avoid; }
+    .manifesto-bridge{ font-size:13px !important; margin-top:10px !important; color:var(--p-ink) !important; break-before:avoid; }
+    .manifesto-bridge span{ color:var(--p-mag) !important; }
+
+    /* trayectoria */
+    .timeline{ padding-left:22px !important; }
+    .timeline::before{ left:4px !important; opacity:1 !important; width:1.5px !important; background:linear-gradient(180deg,var(--p-mag),var(--p-cy)) !important; }
+    .log-entry{ padding:12px 0 !important; border-top:0.5pt solid var(--p-line) !important; opacity:1 !important; transform:none !important; break-inside:avoid; }
+    .log-entry:last-child{ border-bottom:0.5pt solid var(--p-line) !important; }
+    .log-node{ left:-23px !important; top:17px !important; width:9px !important; height:9px !important; background:#fff !important; box-shadow:none !important; }
+    .accent-magenta .log-node{ border-color:var(--p-mag) !important; }
+    .accent-cyan .log-node{ border-color:var(--p-cy) !important; }
+    .log-date{ font-size:9px !important; padding:2px 8px !important; margin-bottom:6px !important; }
+    .accent-magenta .log-date{ color:var(--p-mag) !important; border-color:rgba(194,20,88,.45) !important; }
+    .accent-cyan .log-date{ color:var(--p-cy) !important; border-color:rgba(10,132,129,.5) !important; }
+    .log-role{ font-size:13.5px !important; color:var(--p-ink) !important; }
+    .log-org{ color:var(--p-cy) !important; font-size:10px !important; }
+    .log-desc{ color:var(--p-text) !important; font-size:11px !important; margin-top:5px !important; max-width:none !important; }
+    .log-desc a{ color:var(--p-cy) !important; }
+
+    /* portafolio */
+    .pf-grid{ grid-template-columns:1fr 1fr !important; gap:12px !important; }
+    .pf-card{ background:#fff !important; border:0.5pt solid var(--p-line) !important; color:var(--p-ink) !important; opacity:1 !important; transform:none !important; break-inside:avoid; }
+    .pf-images img{ height:96px !important; transform:none !important; }
+    .pf-images .print-poster, .pf-images img.print-poster{ display:block !important; width:100%; height:96px !important; object-fit:cover; }
+    .pf-body{ padding:10px 12px 12px !important; }
+    .pf-client{ color:var(--p-cy) !important; font-size:8.5px !important; }
+    .pf-title{ font-size:12.5px !important; color:var(--p-ink) !important; margin-top:4px !important; }
+    .pf-desc{ color:var(--p-text) !important; font-size:10.5px !important; margin-top:5px !important; line-height:1.45 !important; }
+    .pf-stack{ color:var(--p-soft) !important; font-size:8px !important; margin-top:7px !important; }
+    .pf-stack span{ color:var(--p-mag) !important; }
+    .pf-role-note{ background:var(--p-wash) !important; color:var(--p-text) !important; border:0.5pt dashed var(--p-line) !important; font-size:10.5px !important; padding:10px 12px !important; margin-top:14px !important; break-inside:avoid; }
+    .pf-role-note strong{ color:var(--p-ink) !important; }
+    .ventures{ margin-top:18px !important; padding-top:16px !important; border-top:0.5pt solid var(--p-line) !important; }
+    .ventures-head{ margin-bottom:12px !important; break-after:avoid; }
+    .ventures-head .eyebrow{ color:var(--p-mag) !important; }
+    .ventures-head h3{ font-size:15px !important; color:var(--p-ink) !important; }
+    .ventures-head p{ color:var(--p-soft) !important; font-size:11px !important; }
+    .vt-grid{ grid-template-columns:1fr 1fr !important; gap:12px !important; }
+    .vt-card{ padding:12px !important; gap:12px !important; border:0.5pt solid var(--p-line) !important; break-inside:avoid; }
+    .vt-logo, .vt-logo-text{ width:44px !important; height:44px !important; }
+    .vt-name{ font-size:12.5px !important; }
+    .vt-desc{ font-size:10.5px !important; color:var(--p-text) !important; margin-top:6px !important; }
+    .vt-type{ font-size:8.5px !important; }
+    .vt-tags span{ color:var(--p-mag) !important; border-color:rgba(194,20,88,.45) !important; font-size:8px !important; }
+
+    /* formación */
+    .cred-cols{ grid-template-columns:1fr 1fr !important; gap:20px !important; }
+    .cred-grid{ grid-template-columns:1fr !important; gap:6px !important; }
+    .cred-block h4{ color:var(--p-mag) !important; font-size:9px !important; margin-bottom:10px !important; }
+    .cred-item{ background:#fff !important; border:0.5pt solid var(--p-line) !important; padding:8px 10px !important; color:var(--p-ink) !important; box-shadow:none !important; transform:none !important; break-inside:avoid; }
+    .cred-dot{ margin-bottom:6px !important; }
+    .cred-role{ font-size:11.5px !important; color:var(--p-ink) !important; }
+    .cred-org{ font-size:9.5px !important; color:var(--p-soft) !important; margin-top:3px !important; }
+    .cred-progress{ color:var(--p-cy) !important; border-color:rgba(10,132,129,.5) !important; }
+
+    /* aliados y comunidades */
+    .allies-grid{ grid-template-columns:repeat(3,1fr) !important; gap:10px !important; }
+    .ally-card{ border:0.5pt solid var(--p-line) !important; padding:12px !important; flex-direction:column !important; gap:8px !important; break-inside:avoid; }
+    .ally-badge{ width:40px !important; height:40px !important; border:0.5pt solid var(--p-line) !important; }
+    .ally-name{ font-size:12.5px !important; color:var(--p-ink) !important; }
+    .ally-role{ color:var(--p-cy) !important; font-size:8px !important; }
+    .ally-desc{ color:var(--p-text) !important; font-size:10px !important; margin-top:6px !important; }
+    .community{ padding:16px 0 0 !important; }
+    .community .wrap{ gap:20px !important; }
+    .community-item{ break-inside:avoid; }
+    .community-badge{ width:40px !important; height:40px !important; }
+    .community-text{ color:var(--p-text) !important; font-size:10px !important; }
+    .community-text strong{ color:var(--p-ink) !important; }
+
+    /* cierre */
+    footer{ background:#fff !important; color:var(--p-ink) !important; padding:16px 0 0 !important; margin-top:20px; border-top:2px solid var(--p-ink); break-inside:avoid; }
+    .footer-top{ border-bottom:0.5pt solid var(--p-line) !important; padding-bottom:12px !important; align-items:flex-start !important; gap:20px !important; }
+    .footer-top h2{ font-size:18px !important; color:var(--p-ink) !important; max-width:none !important; }
+    .footer-contact{ font-size:10.5px !important; gap:5px !important; }
+    .footer-contact a{ color:var(--p-ink) !important; }
+    .footer-bottom{ padding-top:10px !important; }
+    .footer-small{ color:var(--p-soft) !important; font-size:9px !important; }
   }
 </style>
 </head>
@@ -702,6 +860,9 @@
   <div class="wrap">
     <div class="hero-grid">
       <div>
+        <div class="print-only print-name">Julieth Rubio</div>
+        <div class="print-only print-role">Estrategia · Contenido · Marca</div>
+        <div class="print-only print-contact">Bogotá, Colombia · juliethrubio68@gmail.com · +57 320 810 3735<br>linkedin.com/in/julieth-rubio-052490b0 · co.pinterest.com/juliethrubio</div>
         <div class="eyebrow hero-eyebrow">Julieth Rubio — Bogotá, Colombia</div>
         <h1 class="hero-title">Disciplina de riesgo,<br><em>instinto de marca.</em></h1>
         <p class="hero-sub">Diez años liderando proyectos, equipos y procesos críticos en sectores regulados. Hoy pongo esa misma disciplina al servicio del contenido, la marca y la gestión de comunidades — con un portafolio reciente en video mapping, contenido de marca y experiencias digitales junto a <strong>Zalento XD / Belance Human Lab</strong>, y el enfoque de <strong>AI Listening Experience Evaluator — human evaluation of AI-driven listening experiences</strong>.</p>
