@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Julieth Rubio — Disciplina de riesgo, instinto de marca</title>
-<meta name="description" content="Julieth Rubio · Estrategia, contenido y gestión de marca. Diez años liderando proyectos y equipos; portafolio reciente en video mapping y contenido de marca con Zalento XD / Belance Human Lab.">
+<meta name="description" content="Julieth Rubio · Estrategia, contenido y gestión de marca. Diez años liderando proyectos y equipos; portafolio reciente en video mapping y contenido de marca con Zalento XD / Belance Human Lab; AI Listening Experience Evaluator: evaluación humana de experiencias auditivas impulsadas por IA.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -76,6 +76,7 @@
   }
   .btn-print:hover{background:var(--paper); transform:translateY(-1px);}
   .nav-links{display:flex;}
+  @media(max-width:1000px){ .nav-links{gap:16px;} nav ul li a{font-size:11px;} nav .brand{font-size:11px;} }
   @media(max-width:720px){ .nav-links{gap:16px;} .nav-links li a{font-size:10px;} }
   @media(max-width:640px){
     nav .wrap{height:56px;}
@@ -265,6 +266,138 @@
   .svc-item:nth-child(even):hover .svc-num::before{box-shadow:0 0 12px 2px rgba(34,211,208,.7);}
   @media(max-width:900px){ .svc-grid{grid-template-columns:repeat(2,1fr);} }
   @media(max-width:480px){ .svc-grid{grid-template-columns:1fr;} }
+
+  /* ---------- featured service card ---------- */
+  .svc-feature{
+    grid-column:1/-1; flex-direction:row; align-items:center; justify-content:space-between; gap:32px;
+    text-decoration:none; color:inherit; min-height:0; padding:30px 32px;
+  }
+  .svc-feature-body{max-width:64ch;}
+  .svc-feature .svc-label{margin-top:14px; font-size:20px;}
+  .svc-desc{font-size:15px; color:var(--slate); margin-top:8px; transition:color .3s ease;}
+  .svc-feature:hover .svc-desc{color:var(--mist);}
+  .svc-new{
+    font-size:10px; letter-spacing:.05em; text-transform:uppercase; color:var(--magenta);
+    border:1px solid rgba(255,46,126,.45); padding:3px 8px; margin-left:6px;
+  }
+  .svc-cta{
+    font-family:var(--mono); font-size:12px; letter-spacing:.05em; text-transform:uppercase; white-space:nowrap;
+    display:inline-flex; align-items:center; gap:8px; border-bottom:1px solid currentColor; padding-bottom:3px;
+  }
+  .svc-cta span{display:inline-block; transition:transform .3s ease;}
+  .svc-feature:hover .svc-cta span{transform:translateX(6px);}
+  @media(max-width:700px){ .svc-feature{flex-direction:column; align-items:flex-start; gap:18px; padding:26px 22px;} }
+
+  /* ---------- voz e IA ---------- */
+  .listen{background:var(--ink); color:var(--paper); position:relative; overflow:hidden;}
+  .listen::before{
+    content:""; position:absolute; inset:0; pointer-events:none;
+    background:
+      radial-gradient(520px circle at 6% 10%, rgba(255,46,126,.14), transparent 60%),
+      radial-gradient(560px circle at 94% 72%, rgba(34,211,208,.12), transparent 60%);
+  }
+  .listen .wrap{position:relative; z-index:1;}
+  .listen-top{display:grid; grid-template-columns:1.15fr .85fr; gap:56px; align-items:center;}
+  .listen-kicker{display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-bottom:22px;}
+  .listen-kicker .eyebrow{color:var(--cyan);}
+  .listen-new{
+    font-family:var(--mono); font-size:10px; letter-spacing:.05em; text-transform:uppercase;
+    color:var(--magenta); border:1px solid rgba(255,46,126,.45); padding:4px 9px;
+  }
+  .listen h2{
+    font-family:var(--disp); font-weight:600; font-size:clamp(30px,4.2vw,50px); line-height:1.08; letter-spacing:-.01em;
+  }
+  .listen h2 em{
+    font-style:normal; background:linear-gradient(90deg, var(--magenta), var(--cyan));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .listen-sub{margin-top:20px; font-size:17px; color:var(--paper); max-width:46ch;}
+  .listen-en{font-family:var(--mono); font-size:12px; color:var(--mist); letter-spacing:.03em; margin-top:10px; max-width:60ch;}
+  .listen-desc{margin-top:26px; max-width:58ch;}
+  .listen-desc p{color:var(--mist); font-size:15px; margin-bottom:12px;}
+  .listen-desc p:first-child{color:var(--paper); font-family:var(--disp); font-size:18px; font-weight:500;}
+
+  .wave-panel{border:1px solid var(--line-dark); background:rgba(29,31,39,.6); padding:22px 22px 16px;}
+  .wave-head{
+    display:flex; justify-content:space-between; gap:12px; margin-bottom:18px;
+    font-family:var(--mono); font-size:10px; letter-spacing:.06em; text-transform:uppercase; color:var(--mist);
+  }
+  .wave{display:flex; align-items:center; justify-content:space-between; gap:3px; height:150px;}
+  .wave i{
+    display:block; flex:1; min-width:2px; border-radius:2px;
+    height:calc(var(--h) * 1%); background:var(--c); opacity:.92; transform-origin:center;
+    animation:waveBar var(--d, 1.8s) ease-in-out infinite alternate; animation-delay:var(--del, 0s);
+  }
+  @keyframes waveBar{ from{transform:scaleY(.26);} to{transform:scaleY(1);} }
+  .wave-marks{position:relative; height:36px; margin-top:12px; border-top:1px dashed var(--line-dark);}
+  .wave-mark{
+    position:absolute; top:-1px; transform:translateX(-50%);
+    font-family:var(--mono); font-size:9px; letter-spacing:.04em; color:var(--magenta);
+    display:flex; flex-direction:column; align-items:center; gap:4px; white-space:nowrap;
+  }
+  .wave-mark::before{content:""; width:1px; height:10px; background:var(--magenta);}
+  .wave-foot{font-family:var(--mono); font-size:10px; color:var(--mist); letter-spacing:.04em; margin-top:10px; opacity:.8;}
+
+  .listen-quote{
+    margin:72px 0 56px; padding:38px 38% 38px 0; border-top:1px solid var(--line-dark); border-bottom:1px solid var(--line-dark);
+    font-family:var(--disp); font-weight:500; font-size:clamp(22px,3vw,34px); line-height:1.3;
+  }
+  .listen-quote span{color:var(--cyan);}
+
+  .listen-tags{display:grid; grid-template-columns:1fr 1fr; gap:36px; margin-bottom:64px;}
+  .listen-tag-label{
+    display:block; font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--mist); margin-bottom:14px;
+  }
+  .listen-tags .log-tags{margin-top:0;}
+  .listen-tags .log-tags span{font-size:11px; padding:5px 11px;}
+
+  .listen-label{color:var(--magenta); margin-bottom:22px;}
+  .listen-areas{margin-bottom:72px;}
+  .listen-row{
+    position:relative; display:grid; grid-template-columns:64px minmax(0,1fr) minmax(0,1.3fr); gap:28px;
+    padding:26px 0; border-top:1px solid var(--line-dark); align-items:baseline;
+    opacity:0; transform:translateY(14px); transition:opacity .5s ease, transform .5s ease;
+  }
+  .listen-row.in-view{opacity:1; transform:none;}
+  .listen-row:last-child{border-bottom:1px solid var(--line-dark);}
+  .listen-row::after{
+    content:""; position:absolute; left:0; bottom:-1px; height:1px; width:0;
+    background:linear-gradient(90deg, var(--magenta), var(--cyan)); transition:width .6s cubic-bezier(.22,1,.36,1);
+  }
+  .listen-row:hover::after{width:100%;}
+  .listen-num{font-family:var(--mono); font-size:12px; color:var(--magenta);}
+  .listen-row h3{font-family:var(--disp); font-size:18px; font-weight:600; transition:color .3s ease;}
+  .listen-row:hover h3{color:var(--cyan);}
+  .listen-row p{color:var(--mist); font-size:15px;}
+
+  .listen-cta{
+    display:flex; justify-content:space-between; align-items:center; gap:36px; flex-wrap:wrap;
+    padding:38px; border:1px solid var(--line-dark); background:rgba(29,31,39,.6);
+  }
+  .listen-cta > div:first-child{flex:1 1 380px;}
+  .listen-cta-btns{flex:0 0 auto;}
+  .listen-cta h3{font-family:var(--disp); font-size:22px; font-weight:600; margin-bottom:10px;}
+  .listen-cta p{color:var(--mist); font-size:15px; max-width:56ch;}
+  .listen-cta .listen-en{margin-top:10px;}
+  .listen-cta-btns{display:flex; gap:14px; flex-wrap:wrap;}
+  .log-desc a{color:var(--cyan); text-decoration:underline; text-underline-offset:3px;}
+
+  @media(max-width:900px){
+    .listen-top{grid-template-columns:1fr; gap:40px;}
+    .listen-quote{padding-right:12%;}
+    .listen-tags{grid-template-columns:1fr; gap:28px;}
+    .listen-row{grid-template-columns:44px 1fr; gap:6px 16px;}
+    .listen-row p{grid-column:2;}
+  }
+  @media(max-width:560px){
+    .wave{height:110px;}
+    .listen-cta{padding:26px 22px;}
+    .listen-cta-btns{width:100%; flex-direction:column;}
+    .listen-cta-btns .btn{width:100%; justify-content:center;}
+    .listen-quote{margin:48px 0 40px; padding-right:0;}
+  }
+
 
   .manifesto{background:var(--paper);}
   .manifesto-grid{
@@ -502,14 +635,25 @@
 
   @media (prefers-reduced-motion: reduce){
     *{transition:none !important; animation:none !important;}
-    .log-entry, .pf-card, .svc-item, .manifesto-col{opacity:1; transform:none;}
+    .log-entry, .pf-card, .svc-item, .manifesto-col, .listen-row{opacity:1; transform:none;}
   }
 
   /* ---------- print ---------- */
   @media print{
     *{ animation:none !important; transition:none !important; }
     body{background:#fff; color:#111;}
-    .log-entry, .pf-card, .svc-item, .manifesto-col{ opacity:1 !important; transform:none !important; }
+    .log-entry, .pf-card, .svc-item, .manifesto-col, .listen-row{ opacity:1 !important; transform:none !important; }
+    .listen, .listen-cta{ background:#fff !important; color:#111 !important; padding:20px 0; }
+    .listen-cta{ border:1px solid #ccc !important; padding:20px !important; }
+    .listen::before, .wave-panel{ display:none !important; }
+    .listen-top{ grid-template-columns:1fr !important; }
+    .listen h2 em, .listen-quote span{ background:none !important; -webkit-text-fill-color:#111 !important; color:#111 !important; }
+    .listen-sub, .listen-desc p, .listen-row p, .listen-en, .listen-cta p, .listen-tag-label, .listen-desc p:first-child{ color:#333 !important; }
+    .listen-quote, .listen-row, .listen-areas{ border-color:#ccc !important; }
+    .listen-row{ break-inside:avoid; page-break-inside:avoid; }
+    .listen-num, .listen-label, .listen-new, .listen-kicker .eyebrow{ color:#111 !important; border-color:#999 !important; }
+    .svc-feature .svc-desc{ color:#333 !important; }
+    .svc-new{ color:#111 !important; border-color:#999 !important; }
     .svc-item:hover{ background:#fff !important; color:#111 !important; }
     .manifesto-col{ background:#fff !important; color:#111 !important; border:1px solid #ccc !important; }
     .manifesto-col::before{ display:none !important; }
@@ -544,6 +688,7 @@
     <div class="brand">JULIETH RUBIO <span>//</span> ESTRATEGIA &amp; CONTENIDO</div>
     <ul class="nav-links">
       <li><a href="#perfil">Perfil</a></li>
+      <li><a href="#voz-ia">Voz &amp; IA</a></li>
       <li><a href="#trayectoria">Trayectoria</a></li>
       <li><a href="#portafolio">Portafolio</a></li>
       <li><a href="#formacion">Formación</a></li>
@@ -559,7 +704,7 @@
       <div>
         <div class="eyebrow hero-eyebrow">Julieth Rubio — Bogotá, Colombia</div>
         <h1 class="hero-title">Disciplina de riesgo,<br><em>instinto de marca.</em></h1>
-        <p class="hero-sub">Diez años liderando proyectos, equipos y procesos críticos en sectores regulados. Hoy pongo esa misma disciplina al servicio del contenido, la marca y la gestión de comunidades — con un portafolio reciente en video mapping, contenido de marca y experiencias digitales junto a <strong>Zalento XD / Belance Human Lab</strong>.</p>
+        <p class="hero-sub">Diez años liderando proyectos, equipos y procesos críticos en sectores regulados. Hoy pongo esa misma disciplina al servicio del contenido, la marca y la gestión de comunidades — con un portafolio reciente en video mapping, contenido de marca y experiencias digitales junto a <strong>Zalento XD / Belance Human Lab</strong>, y el enfoque de <strong>AI Listening Experience Evaluator — human evaluation of AI-driven listening experiences</strong>.</p>
         <div class="hero-cta">
           <a class="btn btn-primary" href="#portafolio">Ver portafolio creativo</a>
           <a class="btn btn-ghost" href="#trayectoria">Ver trayectoria completa</a>
@@ -572,7 +717,7 @@
           Ingeniera Industrial<br>
           Gestión de proyectos y experiencia de cliente<br>
           Visual Creator · Story Feeling · Fotografía<br>
-          Neurociencia aplicada
+          Neurociencia aplicada · Voz e IA
         </div>
       </div>
     </div>
@@ -617,7 +762,104 @@
       <div class="svc-item"><div class="svc-num">06</div><div class="svc-label">Investigación y copywriting para marcas</div></div>
       <div class="svc-item"><div class="svc-num">07</div><div class="svc-label">Capacitación y formación de equipos</div></div>
       <div class="svc-item"><div class="svc-num">08</div><div class="svc-label">Automatización de procesos y agentes con IA</div></div>
+      <a class="svc-item svc-feature" href="#voz-ia">
+        <div class="svc-feature-body">
+          <div class="svc-num">09</div>
+          <div class="svc-label">Evaluación de la experiencia auditiva e inteligencia artificial</div>
+          <p class="svc-desc">Cómo se percibe una voz generada con IA: naturalidad, fluidez, comprensión y continuidad desde la escucha humana.</p>
+        </div>
+        <span class="svc-cta">Explorar esta especialidad <span>→</span></span>
+      </a>
     </div>
+  </div>
+</section>
+
+<section class="listen" id="voz-ia">
+  <div class="wrap">
+
+    <div class="listen-top">
+      <div>
+        <div class="listen-kicker">
+          <span class="eyebrow">Especialidad · Voz e IA</span>
+        </div>
+        <h2>La voz puede ser artificial. <em>La experiencia no debería sentirse así.</em></h2>
+        <p class="listen-sub">Evaluación humana de experiencias auditivas impulsadas por inteligencia artificial.</p>
+        <p class="listen-en">AI Listening Experience Evaluator — human evaluation of AI-driven listening experiences.</p>
+        <div class="listen-desc">
+          <p>Escuchar es mucho más que oír palabras.</p>
+          <p>Una voz puede ser técnicamente correcta y, aun así, sonar artificial, perder el ritmo, generar confusión o desconectar al oyente de lo que está escuchando.</p>
+          <p>Mi enfoque se centra en evaluar esas diferencias: identificar cuándo una voz generada por inteligencia artificial fluye naturalmente, cuándo pierde coherencia y qué detalles afectan la comprensión, la continuidad y la experiencia de escucha.</p>
+          <p>A través de una escucha atenta y analítica, se identifican y documentan incidencias relacionadas con la pronunciación, la entonación, el ritmo, las pausas, la fluidez y la calidad del audio, siguiendo los criterios establecidos para cada proyecto.</p>
+        </div>
+      </div>
+
+      <div class="wave-panel" aria-hidden="true">
+        <div class="wave-head"><span>Voz generada con IA</span><span>Escucha analítica</span></div>
+        <div class="wave" id="wave"></div>
+        <div class="wave-marks">
+          <span class="wave-mark" style="left:17%">pausa</span>
+          <span class="wave-mark" style="left:46%">entonación</span>
+          <span class="wave-mark" style="left:77%">pronunciación</span>
+        </div>
+        <div class="wave-foot">Ilustración conceptual</div>
+      </div>
+    </div>
+
+    <p class="listen-quote">No basta con que la inteligencia artificial hable. <span>Importa cómo la escuchamos.</span></p>
+
+    <div class="listen-tags">
+      <div class="listen-tagrow">
+        <span class="listen-tag-label">Cómo se percibe una voz</span>
+        <div class="log-tags"><span class="t-content">Natural</span><span class="t-content">Fluida</span><span class="t-content">Comprensible</span><span class="t-content">Coherente</span><span class="t-content">Agradable</span><span class="t-content">Capaz de sostener la atención</span></div>
+      </div>
+      <div class="listen-tagrow">
+        <span class="listen-tag-label">Qué se identifica y documenta</span>
+        <div class="log-tags"><span class="t-risk">Pronunciación</span><span class="t-risk">Entonación</span><span class="t-risk">Ritmo</span><span class="t-risk">Pausas</span><span class="t-risk">Fluidez</span><span class="t-risk">Calidad del audio</span></div>
+      </div>
+    </div>
+
+    <div class="listen-areas">
+      <div class="eyebrow listen-label">Áreas de la especialidad</div>
+
+      <div class="listen-row">
+        <span class="listen-num">01</span>
+        <h3>Evaluación de naturalidad vocal</h3>
+        <p>Análisis de fluidez, ritmo, entonación, pausas y naturalidad de voces generadas por IA.</p>
+      </div>
+      <div class="listen-row">
+        <span class="listen-num">02</span>
+        <h3>Evaluación de experiencia auditiva</h3>
+        <p>Identificación de momentos que afectan la comprensión, la atención, la continuidad narrativa o la comodidad de escucha.</p>
+      </div>
+      <div class="listen-row">
+        <span class="listen-num">03</span>
+        <h3>Revisión lingüística de voz sintética</h3>
+        <p>Detección de errores de pronunciación, palabras omitidas o añadidas, lectura de números, abreviaturas y construcciones poco naturales.</p>
+      </div>
+      <div class="listen-row">
+        <span class="listen-num">04</span>
+        <h3>Identificación y documentación de incidencias</h3>
+        <p>Registro de errores, clasificación de hallazgos y localización de los segmentos de audio correspondientes.</p>
+      </div>
+      <div class="listen-row">
+        <span class="listen-num">05</span>
+        <h3>Evaluación de audiolibros narrados por IA</h3>
+        <p>Revisión de narraciones en español para evaluar su precisión, naturalidad y calidad general desde la perspectiva del oyente.</p>
+      </div>
+    </div>
+
+    <div class="listen-cta">
+      <div>
+        <h3>¿Colaboramos?</h3>
+        <p>Explorando colaboraciones remotas internacionales en proyectos de voz e IA. Los criterios de evaluación se adaptan a las guías de cada proyecto.</p>
+        <p class="listen-en">Open to remote, international collaborations in AI voice evaluation.</p>
+      </div>
+      <div class="listen-cta-btns">
+        <a class="btn btn-primary" href="mailto:juliethrubio68@gmail.com?subject=Colaboraci%C3%B3n%20en%20proyectos%20de%20voz%20e%20IA">Colaborar en proyectos de voz e IA</a>
+        <a class="btn btn-ghost" href="#perfil">Ver perfil completo</a>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -640,6 +882,7 @@
         <h3>Contenido que sostiene la conversación</h3>
         <p>Desde 2020 construyo experiencia de cliente, comunidad y ahora contenido de marca: coordino cuentas y he participado en proyectos creativos con el estudio Zalento XD / Belance Human Lab para marcas como Bancolombia, MinTIC, la Universidad Javeriana, Mary Kay y el Foro Educativo Nacional, y asesoro emprendimientos en estrategia, investigación y copywriting.</p>
         <p>Aplico la misma rigurosidad a briefs, cronogramas y equipos creativos — y la misma vocación de formar: he capacitado a emprendedores y comunidades de organizaciones sociales, con Colmen IA como aliado estratégico para formación en inteligencia artificial.</p>
+        <p>Desarrollo el enfoque de AI Listening Experience Evaluator — human evaluation of AI-driven listening experiences: evaluar la experiencia de escucha de voces generadas con IA, donde la percepción humana y la tecnología se encuentran.</p>
       </div>
     </div>
     <p class="manifesto-bridge">Ambas nacen de la misma pregunta: <span>¿qué necesita esta audiencia para confiar, para preferirte y para recordarte?</span></p>
@@ -662,7 +905,7 @@
       <div>
         <div class="log-role">Aliada estratégica — Gestión de cuenta y coordinación de proyectos creativos</div>
         <div class="log-org">Zalento XD (Studio Creativo) / Belance Human Lab</div>
-        <p class="log-desc">Gestión de cuenta y coordinación entre clientes y equipo creativo para proyectos de video mapping, contenido de marca y experiencias digitales con Bancolombia, Cámara de Comercio de Bogotá, MinTIC, Universidad Javeriana, Mobil Delvac, Parque Explora, Mary Kay y Foro Educativo Nacional.</p>
+        <p class="log-desc">Gestión de cuenta y coordinación entre clientes y equipo creativo para proyectos de video mapping, contenido de marca y experiencias digitales con Bancolombia, Cámara de Comercio de Bogotá, MinTIC, Universidad Javeriana, Mobil Delvac, Parque Explora, Mary Kay y Foro Educativo Nacional. Esta experiencia con contenido e IA se conecta con mi enfoque como <a href="#voz-ia">AI Listening Experience Evaluator — human evaluation of AI-driven listening experiences</a>.</p>
         <div class="log-tags"><span class="t-content">Contenido y marca</span><span class="t-content">Gestión de cuenta</span><span class="t-content">Inteligencia artificial y automatización de procesos</span></div>
       </div>
     </div>
@@ -1089,7 +1332,26 @@
   const obs = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in-view'); obs.unobserve(e.target); } });
   }, {threshold:0.15});
-  document.querySelectorAll('.log-entry, .pf-card, .svc-item, .manifesto-col').forEach(el=>obs.observe(el));
+  document.querySelectorAll('.log-entry, .pf-card, .svc-item, .manifesto-col, .listen-row').forEach(el=>obs.observe(el));
+
+  (function(){
+    const wave = document.getElementById('wave');
+    if(!wave) return;
+    const N = window.innerWidth < 560 ? 44 : 64;
+    const a = [255,46,126], b = [34,211,208];
+    for(let i=0;i<N;i++){
+      const t = i/(N-1);
+      const env = Math.sin(Math.PI*t);
+      const h = 14 + 86*Math.abs(Math.sin(i*0.55)*0.55 + Math.sin(i*0.21+1.3)*0.45)*(0.35+0.65*env);
+      const c = a.map((v,k)=>Math.round(v+(b[k]-v)*t));
+      const el = document.createElement('i');
+      el.style.setProperty('--h', h.toFixed(1));
+      el.style.setProperty('--c', 'rgb('+c.join(',')+')');
+      el.style.setProperty('--d', (1.1+((i*37)%17)/10).toFixed(2)+'s');
+      el.style.setProperty('--del', (-((i*53)%23)/10).toFixed(2)+'s');
+      wave.appendChild(el);
+    }
+  })();
 </script>
 
 </body>
